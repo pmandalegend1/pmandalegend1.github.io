@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parijat Mandal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#0d0f1a; --deep:#1a1f3a; --cobalt:#1e3a6e; --swirl:#2d5fa6;
+  --gold:#e8b84b; --cream:#f5f0e8; --warm:#ede6d5; --muted:#8892aa;
+  --rule:rgba(232,184,75,0.18);
+  --font-display:'EB Garamond',Georgia,serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px;background:#000}
+body{background:transparent;color:var(--cream);font-family:var(--font-body);font-size:1rem;line-height:1.7;position:relative}
+.vg-bg{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none;
+  background:radial-gradient(circle at 82% 14%,rgba(232,184,75,.18) 0%,rgba(232,184,75,.06) 16%,transparent 36%),
+  radial-gradient(ellipse at 15% 85%,rgba(45,95,166,.14) 0%,transparent 55%),
+  linear-gradient(165deg,#000 0%,#07080f 24%,#11152a 48%,#1a2349 72%,#1e3a6e 100%)}
+.vg-bg svg{position:absolute;width:100%;height:100%;top:0;left:0}
+.vg-swirl-group{transform-box:fill-box;transform-origin:center;animation:vg-drift 80s linear infinite}
+.vg-swirl-group.alt{animation-duration:110s;animation-direction:reverse}
+.vg-swirl-group.slow{animation-duration:140s}
+@keyframes vg-drift{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.vg-star{animation:vg-twinkle 5s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes vg-twinkle{0%,100%{opacity:.2;transform:scale(.85)}50%{opacity:.95;transform:scale(1.15)}}
+@media(prefers-reduced-motion:reduce){.vg-swirl-group,.vg-star,.ring-1,.ring-2{animation:none!important}}
+@keyframes swirl-rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes fade-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;
+  justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);height:56px;
+  background:rgba(13,15,26,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);gap:1.25rem}
+.nav-logo{font-family:var(--font-display);font-size:1.15rem;font-weight:500;color:var(--gold);
+  text-decoration:none;letter-spacing:.01em;flex-shrink:0;transition:opacity .2s}
+.nav-logo:hover{opacity:.8}
+.nav-links{display:flex;gap:1.5rem;list-style:none;overflow-x:auto;white-space:nowrap;
+  scrollbar-width:none;-ms-overflow-style:none;flex:1;min-width:0}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links li{flex-shrink:0}
+.nav-links a{position:relative;font-size:.76rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s;padding-bottom:4px}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;
+  background:var(--gold);transition:width .25s ease}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{width:100%}
+.nav-cv{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);
+  background:var(--gold);padding:.35rem .9rem;border-radius:2px;text-decoration:none;
+  transition:opacity .2s,transform .2s;flex-shrink:0}
+.nav-cv:hover{opacity:.85;transform:translateY(-1px)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;flex-shrink:0}
+.nav-hamburger span{width:22px;height:1.5px;background:var(--cream);display:block}
+
+/* LAYOUT */
+main{padding-top:56px}
+.section{padding:clamp(2.2rem,4vw,4rem) clamp(1.5rem,10vw,10rem);border-bottom:1px solid var(--rule);
+  max-width:1100px;margin:0 auto;scroll-margin-top:64px}
+.section-label{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.25rem;display:flex;align-items:center;gap:1rem}
+.section-label::after{content:'';flex:1;height:1px;
+  background:linear-gradient(to right,rgba(232,184,75,.75),rgba(232,184,75,.2),transparent);
+  box-shadow:0 0 8px rgba(232,184,75,.5),0 0 18px rgba(232,184,75,.25)}
+
+/* SHARED PANEL */
+.panel{background:rgba(26,31,58,.55);border:1px solid var(--rule);border-radius:6px;
+  transition:border-color .25s,transform .25s,box-shadow .25s}
+.panel:hover{border-color:rgba(232,184,75,.45);transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.28)}
+
+/* HERO */
+.hero{min-height:calc(100vh - 56px);display:grid;grid-template-columns:1fr auto;align-items:center;
+  gap:4rem;padding:clamp(4rem,8vw,7rem) clamp(1.5rem,10vw,10rem);max-width:1100px;margin:0 auto;
+  animation:fade-in .7s ease both;scroll-margin-top:64px}
+.hero-name-row{display:flex;align-items:center;flex-wrap:wrap;margin-bottom:.9rem}
+.hero-text h1{font-family:var(--font-display);font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight:400;line-height:1.03;letter-spacing:-.02em;color:var(--cream)}
+.hero-text h1 em{font-style:italic;color:var(--gold)}
+.swirl-star--inline{width:86px;height:86px;position:relative;flex-shrink:0;display:flex;
+  align-items:center;justify-content:center;margin-left:3.5rem}
+.swirl-star--inline svg{position:absolute}
+.swirl-star--inline .ring-1{animation:swirl-rotate 18s linear infinite}
+.swirl-star--inline .ring-2{animation:swirl-rotate 12s linear infinite reverse}
+.swirl-star--inline .core{width:34px;height:34px;border-radius:50%;
+  background:radial-gradient(circle,#f0c84a 0%,#c88d1a 60%,transparent 100%);
+  box-shadow:0 0 20px rgba(232,184,75,.5),0 0 40px rgba(232,184,75,.2);position:relative;z-index:2}
+.hero-tagline{font-size:clamp(.95rem,1.6vw,1.15rem);color:var(--muted);margin-bottom:.9rem;
+  font-weight:400;letter-spacing:.02em}
+.hero-desc{font-size:1.04rem;color:rgba(245,240,232,.85);max-width:540px;line-height:1.8;margin-bottom:1.75rem}
+.hero-badge{display:inline-block;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--deep);background:var(--gold);padding:.25rem .6rem;
+  border-radius:2px;margin-right:.5rem;margin-bottom:.5rem;transition:transform .2s,box-shadow .2s}
+.hero-badge:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(232,184,75,.3)}
+.hero-badge.outline{background:transparent;color:var(--gold);border:1px solid rgba(232,184,75,.4)}
+.hero-photo{display:flex;flex-direction:column;align-items:center;gap:.6rem}
+.profile-photo{width:clamp(190px, 22vw, 280px);height:clamp(230px, 26vw, 340px);object-fit:cover;
+  border-radius:6px;border:2px dashed rgba(232,184,75,.45);background:rgba(26,31,58,.5);
+  transition:border-color .25s,transform .25s}
+.profile-photo:hover{border-color:rgba(232,184,75,.75);transform:translateY(-3px)}
+.photo-caption{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);text-align:center}
+
+/* EDUCATION CARDS */
+.edu-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.edu-card{padding:1.4rem 1.6rem;display:flex;flex-direction:column;gap:.75rem}
+.edu-card-header{display:flex;gap:.9rem;align-items:center}
+.edu-logo{width:52px;height:52px;flex-shrink:0;border:1px dashed rgba(232,184,75,.4);
+  border-radius:4px;background:rgba(13,15,26,.5);object-fit:contain;padding:4px}
+.edu-inst{font-family:var(--font-display);font-size:1.05rem;font-weight:500;color:var(--cream)}
+.edu-degree{font-size:.83rem;color:var(--muted);font-style:italic;margin-top:.12rem}
+.edu-divider{height:1px;background:var(--rule)}
+.edu-detail-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.25rem}
+.edu-field{font-size:.81rem;color:rgba(245,240,232,.6)}
+.edu-value{font-family:var(--font-mono);font-size:.77rem;color:var(--gold);text-align:right}
+
+/* EXPERIENCE */
+.exp-item{padding:1.4rem 1.6rem;margin-bottom:.9rem}
+.exp-item:last-child{margin-bottom:0}
+.exp-row{display:flex;gap:1.1rem;align-items:flex-start}
+.exp-logos{display:flex;flex-direction:column;gap:.45rem;flex-shrink:0}
+.exp-logo{width:50px;height:50px;border:1px dashed rgba(232,184,75,.4);border-radius:4px;
+  background:rgba(13,15,26,.5);object-fit:contain;padding:4px;display:block}
+.exp-logo-label{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--muted);text-align:center;margin-top:.1rem}
+.exp-main{flex:1;min-width:0}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;
+  margin-bottom:.65rem;flex-wrap:wrap}
+.exp-role{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--cream)}
+.exp-org{font-size:.86rem;color:var(--muted);margin-top:.12rem}
+.exp-org a{color:var(--gold);text-decoration:none}
+.exp-org a:hover{text-decoration:underline}
+.exp-date{font-family:var(--font-mono);font-size:.7rem;color:var(--gold);letter-spacing:.06em;
+  white-space:nowrap;padding-top:.2rem}
+.exp-bullets{list-style:none;padding:0}
+.exp-bullets li{font-size:.89rem;color:rgba(245,240,232,.78);padding-left:1.2rem;position:relative;
+  margin-bottom:.4rem;line-height:1.58}
+.exp-bullets li::before{content:'';position:absolute;left:0;top:.6rem;width:6px;height:1px;background:var(--gold)}
+.exp-bullets a{color:var(--gold);text-decoration:none;font-size:.78rem}
+.exp-bullets a:hover{text-decoration:underline}
+
+/* PUBLICATIONS */
+.pub-list{display:flex;flex-direction:column;gap:1.1rem}
+.pub-item{padding:1.4rem 1.6rem;
+  transition:border-color .25s,transform .25s,box-shadow .25s,background .25s}
+.pub-item:hover{background:rgba(45,95,166,.22)!important;border-color:rgba(232,184,75,.65)!important;
+  transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.pub-inner{display:flex;gap:1.5rem;align-items:flex-start}
+.pub-text{flex:1;min-width:0}
+.pub-title{font-family:var(--font-display);font-size:1.05rem;font-style:italic;color:var(--cream);
+  margin-bottom:.3rem;line-height:1.4}
+.pub-meta{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.45rem}
+.pub-authors{font-size:.84rem;color:var(--muted);margin-bottom:.5rem;line-height:1.5}
+.pub-authors a{color:rgba(232,184,75,.85);text-decoration:none}
+.pub-authors a:hover{text-decoration:underline;color:var(--gold)}
+.pub-links{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:.55rem}
+.pub-link{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(232,184,75,.3);transition:border-color .2s}
+.pub-link:hover{border-color:var(--gold)}
+.pub-desc{font-size:.87rem;color:rgba(245,240,232,.72);line-height:1.6}
+.pub-gif{width:155px;height:115px;flex-shrink:0;border-radius:4px;border:1px dashed rgba(232,184,75,.3);
+  background:rgba(13,15,26,.6);display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);font-size:.63rem;color:var(--muted);text-align:center;
+  padding:.5rem;letter-spacing:.04em;line-height:1.5}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.4rem}
+.proj-card{background:rgba(26,31,58,.65);border:1px solid rgba(232,184,75,.22);border-radius:6px;
+  padding:1.6rem;position:relative;overflow:hidden;
+  transition:border-color .25s,transform .25s,box-shadow .25s,background .25s}
+.proj-card::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 0% 0%,rgba(45,95,166,.12) 0%,transparent 60%);pointer-events:none}
+.proj-card:hover{border-color:rgba(232,184,75,.65);background:rgba(45,95,166,.2);
+  transform:translateY(-4px);box-shadow:0 14px 32px rgba(0,0,0,.38),0 0 22px rgba(232,184,75,.1)}
+.proj-inner{display:flex;gap:1.1rem;align-items:flex-start}
+.proj-text{flex:1;min-width:0}
+.proj-title{font-family:var(--font-display);font-size:1.08rem;font-weight:500;color:var(--cream);margin-bottom:.3rem}
+.proj-stack{font-family:var(--font-mono);font-size:.68rem;color:var(--muted);letter-spacing:.04em;margin-top:.65rem}
+.proj-desc{font-size:.9rem;color:rgba(245,240,232,.82);line-height:1.68}
+.proj-links{display:flex;gap:.8rem;margin-top:.9rem;flex-wrap:wrap}
+.proj-link{display:inline-block;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;
+  transition:border-color .2s,padding-left .2s}
+.proj-link:hover{border-color:var(--gold);padding-left:4px}
+.proj-gif{width:130px;height:100px;flex-shrink:0;border-radius:4px;border:1px dashed rgba(232,184,75,.3);
+  background:rgba(13,15,26,.6);display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);font-size:.6rem;color:var(--muted);text-align:center;
+  padding:.5rem;letter-spacing:.04em;line-height:1.4}
+
+/* SKILLS */
+.skills-list{display:flex;flex-direction:column;gap:.4rem}
+.skill-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem .5rem;padding:.65rem 1.2rem}
+.skill-row-label{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);flex-shrink:0;min-width:130px}
+.skill-row-items{font-size:.9rem;color:rgba(245,240,232,.82);line-height:1.55}
+
+/* CODING */
+.coding-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:.4rem}
+.coding-card{display:flex;align-items:center;gap:.85rem;padding:.7rem 1.2rem;text-decoration:none}
+.coding-logo{width:36px;height:36px;flex-shrink:0;border:1px dashed rgba(232,184,75,.4);
+  border-radius:4px;background:rgba(13,15,26,.5);object-fit:contain;padding:3px}
+.coding-card .platform{font-family:var(--font-mono);font-size:.79rem;color:var(--cream)}
+.coding-card .rating{font-size:.71rem;color:var(--gold);margin-top:.08rem}
+
+/* CLUBS */
+.club-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.club-item{padding:1.3rem 1.5rem}
+.club-header{display:flex;gap:.9rem;align-items:center;margin-bottom:.8rem}
+.club-logo{width:42px;height:42px;flex-shrink:0;border:1px dashed rgba(232,184,75,.4);
+  border-radius:4px;background:rgba(13,15,26,.5);object-fit:contain;padding:4px}
+.club-name{font-family:var(--font-display);font-size:1rem;color:var(--cream)}
+.club-role{font-size:.78rem;color:var(--muted);margin-top:.1rem}
+.club-projects{list-style:none;padding:0}
+.club-projects li{font-size:.84rem;color:rgba(245,240,232,.72);padding-left:1rem;position:relative;
+  margin-bottom:.35rem;line-height:1.5}
+.club-projects li::before{content:'';position:absolute;left:0;top:.6rem;width:6px;height:1px;background:var(--gold)}
+
+/* ACHIEVEMENTS */
+.achieve-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+.achieve-item{display:flex;align-items:center;gap:.75rem;padding:.8rem 1rem;
+  font-size:.87rem;color:rgba(245,240,232,.78)}
+.achieve-item::before{content:'✦';color:var(--gold);font-size:.58rem;flex-shrink:0}
+
+/* DECLINED */
+.declined-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.1rem}
+.declined-item{padding:1.3rem 1.5rem}
+.declined-name{font-family:var(--font-display);font-size:1rem;color:var(--cream);margin-bottom:.18rem}
+.declined-org{font-family:var(--font-mono);font-size:.71rem;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.5rem}
+.declined-reason{font-size:.85rem;color:rgba(245,240,232,.72);line-height:1.58}
+
+/* CERTS — verified credential cards */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem}
+.cert-card{position:relative;padding:1.15rem 1.25rem 1.1rem;display:flex;flex-direction:column;gap:.55rem;
+  background:linear-gradient(160deg,rgba(26,31,58,.72),rgba(13,15,26,.55));overflow:hidden}
+.cert-card::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 100% 0%,rgba(232,184,75,.12),transparent 55%)}
+.cert-shield{position:absolute;top:.9rem;right:.95rem;width:28px;height:32px;color:var(--gold);
+  opacity:.9;filter:drop-shadow(0 0 6px rgba(232,184,75,.35))}
+.cert-shield svg{width:100%;height:100%}
+.cert-head{display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.62rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.cert-head .dot{width:7px;height:7px;border-radius:50%;background:#3ecf8e;box-shadow:0 0 8px #3ecf8e}
+.cert-title{font-family:var(--font-display);font-size:1.02rem;color:var(--cream);line-height:1.35;padding-right:2.2rem}
+.cert-issuer{font-size:.78rem;color:var(--muted);letter-spacing:.02em}
+.cert-meta{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;margin-top:.15rem}
+.cert-chip{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--font-mono);font-size:.6rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--gold);
+  border:1px solid rgba(232,184,75,.35);border-radius:999px;padding:.2rem .55rem;background:rgba(13,15,26,.45)}
+.cert-chip.lock{color:#9ec5ff;border-color:rgba(158,197,255,.35)}
+.cert-chip svg{width:10px;height:10px}
+.cert-verify{margin-top:.35rem;display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(232,184,75,.35);
+  align-self:flex-start;padding-bottom:2px;transition:border-color .2s,padding-left .2s}
+.cert-verify:hover{border-color:var(--gold);padding-left:3px}
+.cert-hash{font-family:var(--font-mono);font-size:.58rem;color:rgba(136,146,170,.55);letter-spacing:.04em}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:1.4rem}
+.contact-info{padding:1.6rem}
+.contact-info a.contact-link{display:flex;align-items:center;gap:.7rem;color:var(--gold);font-family:var(--font-display);
+  font-size:1.04rem;text-decoration:none;margin-bottom:.65rem;transition:padding-left .2s}
+.contact-info a.contact-link:hover{text-decoration:underline;padding-left:4px}
+.contact-info a.contact-link svg{width:16px;height:16px;flex-shrink:0;opacity:.85}
+.contact-detail{font-size:.87rem;color:var(--muted);line-height:1.85;margin-top:.8rem;
+  padding-top:.85rem;border-top:1px solid var(--rule)}
+.contact-open{padding:1.6rem;display:flex;flex-direction:column;gap:.7rem;
+  background:linear-gradient(155deg,rgba(45,95,166,.2),rgba(26,31,58,.55))}
+.contact-open h3{font-family:var(--font-display);font-size:1.3rem;color:var(--cream)}
+.contact-open p{font-size:.9rem;color:rgba(245,240,232,.78);line-height:1.7}
+.availability{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);
+  font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#3ecf8e;
+  padding:.3rem .7rem;border:1px solid rgba(62,207,142,.35);border-radius:999px;
+  background:rgba(62,207,142,.06);align-self:flex-start}
+.availability .pulse{width:7px;height:7px;border-radius:50%;background:#3ecf8e;
+  box-shadow:0 0 0 0 rgba(62,207,142,.55);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,142,.55)}70%{box-shadow:0 0 0 10px rgba(62,207,142,0)}100%{box-shadow:0 0 0 0 rgba(62,207,142,0)}}
+.contact-cta-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.4rem}
+.contact-cta{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;padding:.6rem 1rem;border-radius:3px;transition:transform .2s,box-shadow .2s}
+.contact-cta.primary{background:var(--gold);color:var(--ink);font-weight:600}
+.contact-cta.primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(232,184,75,.3)}
+.contact-cta.ghost{border:1px solid rgba(232,184,75,.4);color:var(--gold)}
+.contact-cta.ghost:hover{border-color:var(--gold);transform:translateY(-2px)}
+
+/* QUOTE band */
+.quote-band{max-width:1100px;margin:0 auto;padding:2.6rem clamp(1.5rem,10vw,10rem);
+  text-align:center;border-bottom:1px solid var(--rule)}
+.quote-band blockquote{font-family:var(--font-display);font-style:italic;font-size:clamp(1.2rem,2.4vw,1.7rem);
+  color:var(--cream);line-height:1.5;max-width:760px;margin:0 auto}
+.quote-band blockquote::before{content:'“';color:var(--gold);font-size:1.6em;line-height:0;vertical-align:-.35em;margin-right:.1em}
+.quote-band blockquote::after{content:'”';color:var(--gold);font-size:1.6em;line-height:0;vertical-align:-.35em;margin-left:.05em}
+.quote-band cite{display:block;font-family:var(--font-mono);font-style:normal;font-size:.72rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:1rem}
+
+/* SECTION HEADING */
+.s-heading{font-family:var(--font-display);font-size:clamp(1.9rem,4vw,2.8rem);
+  font-weight:400;letter-spacing:-.01em;color:var(--cream);margin-bottom:.35rem}
+.s-heading em{font-style:italic;color:var(--gold)}
+.s-sub{font-size:.89rem;color:var(--muted);margin-bottom:1.4rem;font-weight:300}
+
+/* FOOTER */
+footer{max-width:1100px;margin:0 auto;padding:2.3rem clamp(1.5rem,10vw,10rem) 1.6rem;
+  display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2rem;border-top:1px solid var(--rule)}
+.footer-col h4{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.85rem}
+.footer-brand{font-family:var(--font-display);font-size:1.35rem;color:var(--cream);margin-bottom:.45rem}
+.footer-tag{font-size:.85rem;color:var(--muted);line-height:1.65;max-width:340px}
+.footer-col a{display:block;font-size:.83rem;color:rgba(245,240,232,.72);text-decoration:none;
+  margin-bottom:.45rem;transition:color .2s,padding-left .2s}
+.footer-col a:hover{color:var(--gold);padding-left:3px}
+.footer-bottom{max-width:1100px;margin:0 auto;padding:1rem clamp(1.5rem,10vw,10rem) 1.6rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;
+  border-top:1px solid var(--rule);font-size:.72rem;color:rgba(136,146,170,.65);
+  font-family:var(--font-mono);letter-spacing:.06em}
+.footer-bottom span.gold{color:var(--gold)}
+@media(max-width:700px){footer{grid-template-columns:1fr;gap:1.4rem}}
+
+/* RESPONSIVE */
+@media(max-width:900px){.nav-links{gap:1.1rem}}
+@media(max-width:700px){
+  .hero{grid-template-columns:1fr}
+  .swirl-star--inline{display:none}
+  .hero-photo{justify-self:start;margin-top:.5rem}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .nav-links.open{display:flex;flex-direction:column;gap:0;position:fixed;top:56px;left:0;right:0;
+    background:rgba(13,15,26,.97);backdrop-filter:blur(12px);padding:.5rem 1.5rem 1.5rem;
+    border-bottom:1px solid var(--rule);max-height:calc(100vh - 56px);overflow-y:auto}
+  .nav-links.open li{width:100%}
+  .nav-links.open a{display:block;padding:.7rem 0;border-bottom:1px solid var(--rule);white-space:normal}
+  .edu-cards{grid-template-columns:1fr}
+  .exp-header{flex-direction:column}
+  .contact-grid,.achieve-grid{grid-template-columns:1fr}
+  .skill-row{flex-direction:column;align-items:flex-start;gap:.2rem}
+  .skill-row-label{min-width:auto}
+  .pub-inner,.proj-inner{flex-direction:column}
+  .pub-gif,.proj-gif{width:100%;height:110px}
+}
+</style>
+</head>
+<body>
+
+<div class="vg-bg" aria-hidden="true">
+  <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g class="vg-swirl-group">
+      <path d="M120,680 Q230,610 220,500 Q210,390 320,360 Q430,330 410,440 Q390,550 500,560" fill="none" stroke="rgba(45,95,166,0.16)" stroke-width="7" stroke-linecap="round"/>
+      <path d="M90,740 Q210,680 230,570 Q250,460 360,450" fill="none" stroke="rgba(30,58,110,0.18)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M60,540 Q170,500 190,410 Q210,320 320,310" fill="none" stroke="rgba(45,95,166,0.12)" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <g class="vg-swirl-group alt">
+      <path d="M980,780 Q1090,710 1070,610 Q1050,510 1160,490" fill="none" stroke="rgba(30,58,110,0.14)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M1230,850 Q1330,790 1310,690 Q1290,590 1180,600" fill="none" stroke="rgba(45,95,166,0.12)" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <g class="vg-swirl-group slow">
+      <path d="M1450,300 Q1530,260 1500,180 Q1470,100 1380,120" fill="none" stroke="rgba(232,184,75,0.10)" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <circle class="vg-star" cx="200" cy="120" r="2.2" fill="rgba(232,184,75,0.7)" style="animation-delay:0s"/>
+    <circle class="vg-star" cx="420" cy="80" r="1.6" fill="rgba(232,184,75,0.5)" style="animation-delay:0.6s"/>
+    <circle class="vg-star" cx="640" cy="160" r="1.8" fill="rgba(232,184,75,0.55)" style="animation-delay:1.1s"/>
+    <circle class="vg-star" cx="850" cy="60" r="2" fill="rgba(232,184,75,0.6)" style="animation-delay:1.7s"/>
+    <circle class="vg-star" cx="1020" cy="190" r="1.5" fill="rgba(232,184,75,0.45)" style="animation-delay:2.2s"/>
+    <circle class="vg-star" cx="1180" cy="100" r="1.8" fill="rgba(232,184,75,0.5)" style="animation-delay:0.3s"/>
+    <circle class="vg-star" cx="1320" cy="350" r="1.6" fill="rgba(232,184,75,0.5)" style="animation-delay:2.8s"/>
+    <circle class="vg-star" cx="60" cy="320" r="1.5" fill="rgba(232,184,75,0.4)" style="animation-delay:1.4s"/>
+    <circle class="vg-star" cx="300" cy="420" r="1.4" fill="rgba(232,184,75,0.4)" style="animation-delay:3.2s"/>
+    <circle class="vg-star" cx="540" cy="280" r="1.7" fill="rgba(232,184,75,0.5)" style="animation-delay:0.9s"/>
+    <circle class="vg-star" cx="760" cy="380" r="1.4" fill="rgba(232,184,75,0.4)" style="animation-delay:2s"/>
+    <circle class="vg-star" cx="1450" cy="520" r="1.6" fill="rgba(232,184,75,0.45)" style="animation-delay:1.6s"/>
+    <circle class="vg-star" cx="1550" cy="700" r="1.4" fill="rgba(232,184,75,0.4)" style="animation-delay:3.6s"/>
+    <circle class="vg-star" cx="900" cy="700" r="1.5" fill="rgba(232,184,75,0.4)" style="animation-delay:0.5s"/>
+    <circle class="vg-star" cx="1100" cy="800" r="1.4" fill="rgba(232,184,75,0.35)" style="animation-delay:2.5s"/>
+    <circle class="vg-star" cx="430" cy="780" r="1.5" fill="rgba(232,184,75,0.4)" style="animation-delay:1.2s"/>
+    <circle class="vg-star" cx="700" cy="60" r="1.3" fill="rgba(232,184,75,0.35)" style="animation-delay:3s"/>
+  </svg>
+</div>
+
+<nav>
+  <a class="nav-logo" href="#top">Parijat Mandal</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#coding">Coding</a></li>
+    <li><a href="#clubs">Clubs</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#prior-accomplishments">Prior</a></li>
+    <li><a href="#declined-offers">Declined</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cv" href="/open.html">Resume</a>
+  <div class="nav-hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-text">
+    <p style="font-family:var(--font-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem">CSE · NIT Rourkela · B.Tech '29</p>
+    <div class="hero-name-row">
+      <h1>Parijat<br><em>Mandal</em></h1>
+      <div class="swirl-star--inline" aria-hidden="true">
+        <svg class="ring-1" width="86" height="86" viewBox="0 0 220 220">
+          <defs><filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+          <path d="M110,20 Q185,20 185,110 Q185,185 110,185 Q35,185 35,110 Q35,20 110,20" fill="none" stroke="rgba(232,184,75,0.18)" stroke-width="1.5" stroke-dasharray="8 12" filter="url(#glow)"/>
+          <path d="M110,8 Q197,8 197,110 Q197,197 110,197 Q23,197 23,110 Q23,8 110,8" fill="none" stroke="rgba(45,95,166,0.22)" stroke-width="1" stroke-dasharray="4 20"/>
+          <circle cx="110" cy="10" r="2.5" fill="rgba(232,184,75,0.8)"/>
+          <circle cx="197" cy="80" r="1.8" fill="rgba(232,184,75,0.6)"/>
+          <circle cx="170" cy="185" r="2" fill="rgba(232,184,75,0.5)"/>
+          <circle cx="30" cy="150" r="1.5" fill="rgba(232,184,75,0.4)"/>
+          <circle cx="45" cy="45" r="2" fill="rgba(232,184,75,0.55)"/>
+        </svg>
+        <svg class="ring-2" width="64" height="64" viewBox="0 0 160 160" style="position:absolute">
+          <path d="M80,5 Q150,5 155,75 Q155,152 80,155 Q5,155 5,80 Q5,5 80,5" fill="none" stroke="rgba(45,95,166,0.3)" stroke-width="1" stroke-dasharray="6 10"/>
+          <path d="M80,18 C130,15 148,55 148,80 C148,118 118,145 80,145" fill="none" stroke="rgba(232,184,75,0.12)" stroke-width="2"/>
+          <circle cx="80" cy="5" r="2" fill="rgba(45,95,166,0.6)"/>
+          <circle cx="152" cy="60" r="1.5" fill="rgba(45,95,166,0.5)"/>
+        </svg>
+        <div class="core"></div>
+      </div>
+    </div>
+    <p class="hero-tagline">AI, LLM, ML, DL Research &nbsp;|&nbsp; Signal Processing</p>
+    <p class="hero-desc">First-year CSE undergraduate at NIT Rourkela building ML systems grounded in physical intuition. Concurrent research intern at IIT Gandhinagar (piezoresistive sensor pipelines) and IIIT Allahabad (medical image translation). Interested in the intersection of classical signal processing and modern deep learning. Open to research roles across India and the United States.</p>
+    <div>
+      <span class="hero-badge">U.S. Citizen</span>
+      <span class="hero-badge outline">McKinsey Forward '26</span>
+      <span class="hero-badge outline">GSSoC '26</span>
+    </div>
+    <div style="margin-top:1.4rem;display:flex;gap:1rem;flex-wrap:wrap">
+      <a href="#contact" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:2px">Get in touch</a>
+      <a href="#experience" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px">View work</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="images/photopic.png"
+         alt="Parijat Mandal" class="profile-photo">
+    <span class="photo-caption">Me in 2010</span>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="section-label">01 — Education</div>
+  <h2 class="s-heading">Academic <em>background</em></h2>
+  <div class="edu-cards">
+    <div class="edu-card panel">
+      <div class="edu-card-header">
+        <img src="images/nit-rkl-logo.png" alt="NIT Rourkela" class="edu-logo">
+        <div>
+          <div class="edu-inst">NIT Rourkela</div>
+          <div class="edu-degree">B.Tech in Computer Science &amp; Engineering</div>
+        </div>
+      </div>
+      <div class="edu-divider"></div>
+      <div class="edu-detail-row"><span class="edu-field">Duration</span><span class="edu-value">Aug 2025 – Aug 2029</span></div>
+      <div class="edu-detail-row"><span class="edu-field">CGPA</span><span class="edu-value">8.13</span></div>
+      <div class="edu-detail-row"><span class="edu-field">Location</span><span class="edu-value">Rourkela, Odisha</span></div>
+    </div>
+    <div class="edu-card panel">
+      <div class="edu-card-header">
+        <img src="images/vrajbhoomi-logo.png" alt="VISMA, Anand" class="edu-logo">
+        <div>
+          <div class="edu-inst">VISMA, Anand</div>
+          <div class="edu-degree">CBSE — Class 12 &amp; 10</div>
+        </div>
+      </div>
+      <div class="edu-divider"></div>
+      <div class="edu-detail-row"><span class="edu-field">Duration</span><span class="edu-value">Dec 2015 – Mar 2025</span></div>
+      <div class="edu-detail-row"><span class="edu-field">Class 12</span><span class="edu-value">89.40% (CS: 99/100)</span></div>
+      <div class="edu-detail-row"><span class="edu-field">Class 10</span><span class="edu-value">95.00% (IT: 100/100)</span></div>
+      <div class="edu-detail-row"><span class="edu-field">Board</span><span class="edu-value">CBSE</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-label">02 — Experience</div>
+  <h2 class="s-heading">Research &amp; <em>internships</em></h2>
+
+  <div class="exp-item panel">
+    <div class="exp-row">
+      <div class="exp-logos">
+        <div>
+          <img src="images/iit-gn-logo.png" alt="IIT Gandhinagar" class="exp-logo">
+          <div class="exp-logo-label"></div>
+        </div>
+        <div>
+          <img src="images/sml-logo.png" alt="SML Lab" class="exp-logo">
+          <div class="exp-logo-label">Lab</div>
+        </div>
+      </div>
+      <div class="exp-main">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Summer Research Intern</div>
+            <div class="exp-org">SML @ <a href="https://iitgn.ac.in" target="_blank">IIT Gandhinagar</a> &nbsp;· Supervisor: <a href="https://scholar.google.com/citations?user=_KspP2sAAAAJ&hl=en" target="_blank">Dr. Biswajit Saha</a></div>
+          </div>
+          <div class="exp-date">May 2026 – Present</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Working with piezoresistive sensor signals; signal-type-specific data cleaning, preprocessing, decomposition using novel architectures for downstream ML analysis. <a href="https://github.com/pmandalegend1/Research_Project_at_IITGN" target="_blank">[GitHub Link]</a></li>
+          <li>Implementing tailored filtering pipelines per signal type to denoise raw sensor data in preparation for ML model development.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item panel">
+    <div class="exp-row">
+      <div class="exp-logos">
+        <div>
+          <img src="images/iiit-allahabad-logo.png" alt="IIIT Allahabad" class="exp-logo">
+          <div class="exp-logo-label"></div>
+        </div>
+        <div>
+          <img src="images/cvbl-iiita.png" alt="CVBL Lab" class="exp-logo">
+          <div class="exp-logo-label">Lab</div>
+        </div>
+      </div>
+      <div class="exp-main">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Summer Intern - CT to MRI Scan using CycleGANs</div>
+            <div class="exp-org">CVBL @ IIIT Allahabad &nbsp;| Supervisor: <a href="https://scholar.google.com/citations?user=TioEtyEAAAAJ&hl=en&oi=ao" target="_blank">Dr. Shiv Ram Dubey</a></div>
+          </div>
+          <div class="exp-date">June 2026</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Working on medical image-to-image translation pipelines mapping between imaging modalities for downstream diagnostic and reconstruction tasks.</li>
+          <li>Literature review of generative and translation architectures applied to clinical imaging; dataset curation and preprocessing for model training.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item panel">
+    <div class="exp-row">
+      <div class="exp-logos">
+        <div>
+          <img src="images/Charusat-logo.png" alt="CHARUSAT" class="exp-logo">
+          <div class="exp-logo-label"></div>
+        </div>
+        <div>
+          <img src="images/cspit-logo.png" alt="CSPIT" class="exp-logo">
+          <div class="exp-logo-label">Dept</div>
+        </div>
+      </div>
+      <div class="exp-main">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Machine Learning Research Intern</div>
+            <div class="exp-org">CSPIT, CHARUSAT &nbsp;| Supervisors: <a href="https://scholar.google.com/citations?user=pzgCmusAAAAJ&hl=en" target="_blank">Dr. Nirav Bhatt</a>, <a href="https://scholar.google.com/citations?user=d57JEd4AAAAJ&hl=en" target="_blank">Dr. Ratnakar Dash</a></div>
+          </div>
+          <div class="exp-date">Dec 2025 – Jan 2026</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Engineered a rotation-aware feature framework modeling delay propagation via buffer depletion and upstream carryover signals, eliminating dependence on meteorological inputs. <a href="https://github.com/pmandalegend1/Flight_delay_prediction_without_over-relying_on_meteorological_data" target="_blank">[GitHub]</a></li>
+          <li>ROC-AUC of 85.90% and 55% reduction in Brier Score over naive baseline using LightGBM, training 15x faster than CatBoost; viable for real-time deployment.</li>
+          <li>Manuscript <em>"Modeling Delay Propagation Without Meteorological Data via a Rotation-Aware Approach"</em> currently under conference review.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item panel">
+    <div class="exp-row">
+      <div class="exp-logos">
+        <div>
+          <img src="images/Charusat-logo.png" alt="CHARUSAT" class="exp-logo">
+          <div class="exp-logo-label"></div>
+        </div>
+        <div>
+          <img src="images/cspit-logo.png" alt="CSPIT" class="exp-logo">
+          <div class="exp-logo-label">Dept</div>
+        </div>
+      </div>
+      <div class="exp-main">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">AI-ML Apprentice</div>
+            <div class="exp-org">CSPIT, CHARUSAT &nbsp;| Supervisor: <a href="https://scholar.google.com/citations?user=pzgCmusAAAAJ&hl=en" target="_blank">Dr. Nirav Bhatt</a></div>
+          </div>
+          <div class="exp-date">May – July 2025</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Built an interactive Dataset Analyzer for CSV/Excel datasets in Jupyter Notebook for data preprocessing, EDA, and visualization using NumPy, Pandas, and Matplotlib. <a href="https://github.com/pmandalegend1/Dataset_Analyzer_using-NumPy_Pandas_and_Matplotlib" target="_blank">[Github]</a></li>
+          <li>Explored computer vision workflows using YOLO for object detection tasks.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="section" id="publications">
+  <div class="section-label">03 — Publications</div>
+  <h2 class="s-heading">Papers <em>under review</em></h2>
+  <p class="s-sub">Manuscripts currently in the review pipeline.</p>
+  <div class="pub-list">
+    <div class="pub-item panel">
+      <div class="pub-inner">
+        <div class="pub-text">
+          <div class="pub-title">"Modeling Delay Propagation Without Meteorological Data via a Rotation-Aware Approach"</div>
+          <div class="pub-meta">Under Conference Review</div>
+          <div class="pub-authors">Parijat Mandal, <a href="https://scholar.google.com/citations?user=pzgCmusAAAAJ&hl=en" target="_blank">Dr. Nirav Bhatt</a>, <a href="https://scholar.google.com/citations?user=d57JEd4AAAAJ&hl=en" target="_blank">Dr. Ratnakar Dash</a></div>
+          <div class="pub-links">
+            <a href="https://github.com/" target="_blank" class="pub-link">GitHub</a>
+            <a href="#" class="pub-link">Paper (under review)</a>
+          </div>
+          <p class="pub-desc">Rotation-aware feature framework modeling flight delay propagation via buffer depletion and upstream carryover signals, removing dependence on meteorological inputs. LightGBM achieves ROC-AUC 85.90% and 55% Brier Score reduction, 15x faster than CatBoost.</p>
+        </div>
+        <div class="pub-gif">https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNG1zc2dhM3kwNjk1aDc1aXM2OGU4MmlnZDUwbTZ2MHphNHgzYWVuNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KzbEbf0Cs30Ky2mWgh/giphy.gif</div>
+      </div>
+    </div>
+    <div class="pub-item panel">
+      <div class="pub-inner">
+        <div class="pub-text">
+          <div class="pub-title">Evaluating Feature Sensitivity of Attention-Enhanced Convolutional Neural Networks for Microscopy-Driven Cellular Damage Pattern Recognition in Alcohol-Exposed Intestinal Epithelial Cells</div>
+          <div class="pub-meta">Under Review</div>
+          <div class="pub-authors">REDACTED</div>
+          <div class="pub-links">
+            <a href="https://github.com/" target="_blank" class="pub-link">GitHub</a>
+            <a href="#" class="pub-link">NA</a>
+          </div>
+          <p class="pub-desc">AE-CNNs for evaluating feature sensitivity in microscopy-driven cellular damage pattern recognition.</p>
+        </div>
+        <div class="pub-gif">https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHBiNnNiMm9vNnI2MDA2cHc3N204aTR5cXF4eTZqZ285dzZ1aXVmZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ogwFYJ79T43JQ07mM/giphy.gif</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-label">04 — Projects</div>
+  <h2 class="s-heading">Selected <em>work</em></h2>
+  <p class="s-sub">Some of my projects (club tasks included)</p>
+  <div class="projects-grid">
+    <div class="proj-card">
+      <div class="proj-inner">
+        <div class="proj-text">
+          <div class="proj-title">Flight Delay Prediction Model</div>
+          <p class="proj-desc">7 domain-driven features modeling aircraft delay propagation without meteorological or post-departure variables. Improved ROC-AUC from 0.8221 to 85.90% with a 55% reduction in Brier Score under real-world class imbalance.</p>
+          <div class="proj-links">
+            <a href="https://github.com/pmandalegend1/Flight_delay_prediction_without_over-relying_on_meteorological_data" target="_blank" class="proj-link">GitHub</a>
+          </div>
+          <div class="proj-stack">Python | Pandas | NumPy | Scikit-learn | LightGBM</div>
+        </div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-inner">
+        <div class="proj-text">
+          <div class="proj-title">Dataset Analyzer</div>
+          <p class="proj-desc">Interactive tool to explore, clean, and visualize CSV/Excel datasets. Dynamic handling of missing values, column operations, and statistical summaries — designed for fast exploratory analysis.</p>
+          <div class="proj-links">
+            <a href="https://github.com/pmandalegend1/Dataset_Analyzer_using-NumPy_Pandas_and_Matplotlib" target="_blank" class="proj-link">GitHub</a>
+          </div>
+          <div class="proj-stack">Python | NumPy | Pandas | Matplotlib</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-label">05 — Skills</div>
+  <h2 class="s-heading">Technical <em>toolkit</em></h2>
+  <div class="skills-list">
+    <div class="skill-row panel"><span class="skill-row-label">Languages</span><span class="skill-row-items">Python, C++, SQL</span></div>
+    <div class="skill-row panel"><span class="skill-row-label">Libraries</span><span class="skill-row-items">Pandas, NumPy, Matplotlib, Scikit-learn, LightGBM</span></div>
+    <div class="skill-row panel"><span class="skill-row-label">Tools</span><span class="skill-row-items">Git / GitHub, Jupyter, VS Code, LaTeX</span></div>
+    <div class="skill-row panel"><span class="skill-row-label">Concepts</span><span class="skill-row-items">Machine Learning, Feature Engineering, EDA, AI, YOLO</span></div>
+    <div class="skill-row panel"><span class="skill-row-label">Databases</span><span class="skill-row-items">MySQL</span></div>
+  </div>
+</section>
+
+<!-- CODING PROFILES -->
+<section class="section" id="coding">
+  <div class="section-label">06 — Competitive Programming</div>
+  <h2 class="s-heading">Coding <em>profiles</em></h2>
+  <div class="coding-row">
+    <a class="coding-card panel" href="https://codeforces.com/profile/Nighthawk_Kinger" target="_blank">
+      <img src="images/Codeforces-logo.png" alt="Codeforces" class="coding-logo">
+      <div><div class="platform">Codeforces</div><div class="rating">Max: 935</div></div>
+    </a>
+    <a class="coding-card panel" href="https://www.codechef.com/users/second2none" target="_blank">
+      <img src="images/Codechef-logo.png" alt="CodeChef" class="coding-logo">
+      <div><div class="platform">CodeChef</div><div class="rating">Max: 1110</div></div>
+    </a>
+    <a class="coding-card panel" href="https://leetcode.com/u/Nighthawk_Kinger/" target="_blank">
+      <img src="images/Leetcode-logo.png" alt="LeetCode" class="coding-logo">
+      <div><div class="platform">LeetCode</div><div class="rating">Profile</div></div>
+    </a>
+    <a class="coding-card panel" href="https://codolio.com/profile/Nighthawk_Kinger" target="_blank">
+      <img src="images/Codolio-logo.png" alt="Codolio" class="coding-logo">
+      <div><div class="platform">Codolio</div><div class="rating">Profile</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- CLUBS -->
+<section class="section" id="clubs">
+  <div class="section-label">07 — Clubs</div>
+  <h2 class="s-heading">Clubs at <em>NIT Rourkela</em></h2>
+  <div class="club-grid">
+    <div class="club-item panel">
+      <div class="club-header">
+        <img src="images/Webwiz-logo.png" alt="WebWiz" class="club-logo">
+        <div><div class="club-name">WebWiz</div><div class="club-role">AI/ML Member</div></div>
+      </div>
+      <ul class="club-projects">
+        <li>https://github.com/pmandalegend1/WebWiz-tasks/tree/main/task-1</li>
+        <li>https://github.com/pmandalegend1/WebWiz-tasks/tree/main/task-2</li>
+      </ul>
+    </div>
+    <div class="club-item panel">
+      <div class="club-header">
+        <img src="images/Opencode-logo.png" alt="OpenCode" class="club-logo">
+        <div><div class="club-name">OpenCode</div><div class="club-role">AI/ML Member</div></div>
+      </div>
+      <ul class="club-projects">
+        <li>https://github.com/pmandalegend1/OPENCODE-tasks/tree/main/task-1</li>
+        <li>https://github.com/pmandalegend1/OPENCODE-tasks/tree/main/task-2</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="section" id="achievements">
+  <div class="section-label">08 — Achievements</div>
+  <h2 class="s-heading">Honors &amp; <em>recognition</em></h2>
+  <div class="achieve-grid">
+    <div class="achieve-item panel">Selected for McKinsey Forward 2026</div>
+    <div class="achieve-item panel">Selected for GSSoC '26</div>
+    <div class="achieve-item panel">AI/ML Member — WebWiz &amp; OpenCode</div>
+  </div>
+</section>
+
+<!-- PRIOR ACCOMPLISHMENTS -->
+<section class="section" id="prior-accomplishments">
+  <div class="section-label">09 — Prior Accomplishments</div>
+  <h2 class="s-heading">Earlier <em>accomplishments</em></h2>
+  <div class="achieve-grid">
+    <div class="achieve-item panel">14x SOF Olympiad Medalist</div>
+    <div class="achieve-item panel">Britannia Conquest I.Q. Olympiad - Gold Medal</div>
+    <div class="achieve-item panel">3x Public Speaking Winner (Extempore)</div>
+    <div class="achieve-item panel">ASSET National Group of Scholars (2 Years)</div>
+    <div class="achieve-item panel">Academic Secretary</div>
+    <div class="achieve-item panel">8x Inter-school Participations</div>
+    <div class="achieve-item panel">VISMA UTSAV 2016 - 2nd Place</div>
+    <div class="achieve-item panel">Book Club Member</div>
+  </div>
+</section>
+
+
+<!-- Declined Offers -->
+<section class="section" id="declined-offers">
+  <div class="section-label">10 — Declined Offers</div>
+  <h2 class="s-heading">Declined <em>offers &amp; selections</em></h2>
+  <div class="declined-content">
+    <p>Though grateful for the opportunities, I was unable to accept these offers due to prior commitments or scheduling conflicts:</p>
+    <ul>
+      <li><strong>IIT Ropar VLED</strong> – Declined due to conflicting academic commitments.</li>
+      <li><strong>RVU Cybersec</strong> – Unable to accept due to scheduling overlaps.</li>
+      <li><strong>CVIT Summer School, IIITH</strong> – Passed on the selection due to prior research commitments.</li>
+      <li><strong>UT Knoxville ML Summer School</strong> – Couldn't attend due to non-availability during the program dates.</li>
+      <li><strong>NIT Rourkela Summer Internship</strong> – Declined the offer due to concurrent internship schedules.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- CERTIFICATIONS -->
+<section class="section" id="certifications">
+  <div class="section-label">11 — Certifications</div>
+  <h2 class="s-heading">Verified <em>credentials</em></h2>
+  <p class="s-sub">Each credential is issuer-signed and verifiable at source. Click <em>Verify</em> to open the original certificate.</p>
+  
+  <p style="margin-bottom:1.5rem; font-family:var(--font-mono); font-size:.7rem; color:var(--muted); letter-spacing:.02em;">
+    <strong>Notice:</strong> If a certificate link requires permissions, please contact me directly for full access.
+  </p>
+
+  <div class="cert-grid">
+
+    <div class="cert-card panel">
+      <div class="cert-shield" aria-hidden="true"><svg viewBox="0 0 24 28" fill="none"><path d="M12 1l10 4v8c0 6.5-4.4 12.4-10 14C6.4 25.4 2 19.5 2 13V5l10-4z" stroke="currentColor" stroke-width="1.5" fill="rgba(232,184,75,.08)"/><path d="M8 13.5l2.8 2.8L16 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cert-head"><span class="dot"></span>Verified Credential</div>
+      <div class="cert-title">Problem-driven AI</div>
+      <div class="cert-issuer">Issued by NIT Rourkela</div>
+      <a class="cert-verify" href="https://drive.google.com/file/d/1CaHn9rDUo9LZSbyKZFjexrSCldcvbNhL/view?usp=sharing" target="_blank" rel="noopener">Verify credential →</a>
+    </div>
+
+    <div class="cert-card panel">
+      <div class="cert-shield" aria-hidden="true"><svg viewBox="0 0 24 28" fill="none"><path d="M12 1l10 4v8c0 6.5-4.4 12.4-10 14C6.4 25.4 2 19.5 2 13V5l10-4z" stroke="currentColor" stroke-width="1.5" fill="rgba(232,184,75,.08)"/><path d="M8 13.5l2.8 2.8L16 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cert-head"><span class="dot"></span>Verified Credential</div>
+      <div class="cert-title">Lightweight Cryptographic Techniques for IoT</div>
+      <div class="cert-issuer">Issued by NIT Rourkela</div>
+      <a class="cert-verify" href="https://drive.google.com/file/d/1WWWuw6tWgE82jABRgDpT2eVw5KIho_Vm/view?usp=drive_link" target="_blank" rel="noopener">Verify credential →</a>
+    </div>
+
+    <div class="cert-card panel">
+      <div class="cert-shield" aria-hidden="true"><svg viewBox="0 0 24 28" fill="none"><path d="M12 1l10 4v8c0 6.5-4.4 12.4-10 14C6.4 25.4 2 19.5 2 13V5l10-4z" stroke="currentColor" stroke-width="1.5" fill="rgba(232,184,75,.08)"/><path d="M8 13.5l2.8 2.8L16 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cert-head"><span class="dot"></span>Verified Credential</div>
+      <div class="cert-title">ACCT-CPS</div>
+      <div class="cert-issuer">Issued by NIT Rourkela</div>
+      <a class="cert-verify" href="https://drive.google.com/file/d/1u_M3xYDi2fSjHgISLs3lTDzao6MemQm8/view?usp=sharing" target="_blank" rel="noopener">Verify credential →</a>
+    </div>
+
+    <div class="cert-card panel">
+      <div class="cert-shield" aria-hidden="true"><svg viewBox="0 0 24 28" fill="none"><path d="M12 1l10 4v8c0 6.5-4.4 12.4-10 14C6.4 25.4 2 19.5 2 13V5l10-4z" stroke="currentColor" stroke-width="1.5" fill="rgba(232,184,75,.08)"/><path d="M8 13.5l2.8 2.8L16 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cert-head"><span class="dot"></span>Verified Credential</div>
+      <div class="cert-title">Digital Twins &amp; Agentic AI</div>
+      <div class="cert-issuer">Issued by BITS Pilani</div>
+      <a class="cert-verify" href="https://drive.google.com/file/d/1i6CoPr9WT8kxtvkCTWZqMRyW7MXyzT9o/view?usp=sharing" target="_blank" rel="noopener">Verify credential →</a>
+    </div>
+
+    <div class="cert-card panel">
+      <div class="cert-shield" aria-hidden="true"><svg viewBox="0 0 24 28" fill="none"><path d="M12 1l10 4v8c0 6.5-4.4 12.4-10 14C6.4 25.4 2 19.5 2 13V5l10-4z" stroke="currentColor" stroke-width="1.5" fill="rgba(232,184,75,.08)"/><path d="M8 13.5l2.8 2.8L16 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cert-head"><span class="dot"></span>Verified Credential</div>
+      <div class="cert-title">C++ Programming Course</div>
+      <div class="cert-issuer">Issued by GeeksforGeeks</div>
+      <a class="cert-verify" href="https://drive.google.com/file/d/1mFszu3KHqORth7vXSHCrMZDZTtu3iFU1/view?usp=sharing" target="_blank" rel="noopener">Verify credential →</a>
+    </div>
+
+    <div class="cert-card panel">
+      <div class="cert-shield" aria-hidden="true"><svg viewBox="0 0 24 28" fill="none"><path d="M12 1l10 4v8c0 6.5-4.4 12.4-10 14C6.4 25.4 2 19.5 2 13V5l10-4z" stroke="currentColor" stroke-width="1.5" fill="rgba(232,184,75,.08)"/><path d="M8 13.5l2.8 2.8L16 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cert-head"><span class="dot"></span>Verified Credential</div>
+      <div class="cert-title">Pandas &amp; Intro to Machine Learning</div>
+      <div class="cert-issuer">Issued by Kaggle</div>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+        <a class="cert-verify" href="https://drive.google.com/file/d/1o__qy1E0oHCY3IhphzJHYZbz9ALtLBwP/view?usp=sharing" target="_blank" rel="noopener">Verify Pandas →</a>
+        <a class="cert-verify" href="https://drive.google.com/file/d/1IH6ehPVjPwKX50ondi6dULs3d--Xu7w7/view?usp=sharing" target="_blank" rel="noopener">Verify ML →</a>
+      </div>
+    </div>
+
+    <div class="cert-card panel">
+      <div class="cert-shield" aria-hidden="true"><svg viewBox="0 0 24 28" fill="none"><path d="M12 1l10 4v8c0 6.5-4.4 12.4-10 14C6.4 25.4 2 19.5 2 13V5l10-4z" stroke="currentColor" stroke-width="1.5" fill="rgba(232,184,75,.08)"/><path d="M8 13.5l2.8 2.8L16 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cert-head"><span class="dot"></span>Verified Credential</div>
+      <div class="cert-title">AI for Genomic Data</div>
+      <div class="cert-issuer">Issued by Labroots</div>
+      <a class="cert-verify" href="https://drive.google.com/file/d/17zR-44HdwC2KLb1sC5gXc37gDiYv4gRh/view?usp=sharing" target="_blank" rel="noopener">Verify credential →</a>
+    </div>
+
+    <div class="cert-card panel">
+      <div class="cert-shield" aria-hidden="true"><svg viewBox="0 0 24 28" fill="none"><path d="M12 1l10 4v8c0 6.5-4.4 12.4-10 14C6.4 25.4 2 19.5 2 13V5l10-4z" stroke="currentColor" stroke-width="1.5" fill="rgba(232,184,75,.08)"/><path d="M8 13.5l2.8 2.8L16 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cert-head"><span class="dot"></span>Verified Credential</div>
+      <div class="cert-title">Data Science &amp; Analytics Basics</div>
+      <div class="cert-issuer">Issued by HP LIFE</div>
+      <a class="cert-verify" href="https://drive.google.com/file/d/12IwNfiUvmM-GqdCH9uKOqUXnHpf-Cji2/view?usp=drive_link" target="_blank" rel="noopener">Verify credential →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-label">12 — Contact</div>
+  <h2 class="s-heading">Get in <em>touch</em></h2>
+  <p class="s-sub">Best reached over email or LinkedIn.</p>
+  <div class="contact-grid">
+    <div class="contact-info panel">
+      <a class="contact-link" href="mailto:parijatmandal3631@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        parijatmandal3631@gmail.com
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/parijat-mandal/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.06c.53-1 1.83-2.05 3.77-2.05 4.04 0 4.79 2.65 4.79 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21h-4z"/></svg>
+        LinkedIn — /in/parijat-mandal
+      </a>
+      <a class="contact-link" href="https://github.com/pmandalegend1" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2.1c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.3.8 1 .8 2v3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        GitHub — @pmandalegend1
+      </a>
+      <a class="contact-link" href="tel:+919099264654">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.86 19.86 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.8a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.84.57 2.8.7A2 2 0 0122 16.92z"/></svg>
+        +91 90992 64654
+      </a>
+      <div class="contact-detail">
+        Anand, Gujarat, India · NIT Rourkela, Odisha<br>
+        Spoken: English · Hindi · Bengali · Gujarati<br>
+        Time zone: IST (UTC+5:30) · Open to U.S. time-zone calls
+      </div>
+    </div>
+    <div class="contact-open panel">
+      <span class="availability"><span class="pulse"></span>Available · Summer &amp; Fall '26</span>
+      <h3>Open to opportunities</h3>
+      <p>Actively seeking <strong style="color:var(--gold);font-weight:500">research internships</strong> in ML, deep learning, signal processing and medical imaging. U.S. citizen — eligible to work in both India and the United States, remote or in-person.</p>
+      <p>Also happy to chat about collaboration on open-source ML projects, paper reviews, or research mentorship.</p>
+      <div class="contact-cta-row">
+        <a class="contact-cta primary" href="/open.html">View full availability →</a>
+        <a class="contact-cta ghost" href="mailto:parijatmandal3631@gmail.com">Email me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE BAND -->
+<div class="quote-band">
+  <blockquote>I dream of painting, and then I paint my dream.</blockquote>
+  <cite>— Vincent van Gogh</cite>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-col">
+    <div class="footer-brand">Parijat Mandal</div>
+    <p class="footer-tag">B.Tech CSE '29 @ NIT Rourkela. Building ML systems grounded in physical intuition, at the intersection of classical signal processing and modern deep learning.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Navigate</h4>
+    <a href="#experience">Experience</a>
+    <a href="#publications">Publications</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="/open.html">Open to opportunities</a>
+  </div>
+  <div class="footer-col">
+    <h4>Elsewhere</h4>
+    <a href="mailto:parijatmandal3631@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/parijat-mandal/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/pmandalegend1" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <div>© 2026 Parijat Mandal · All rights reserved</div>
+  <div>Crafted under a <span class="gold">starry night</span> · NIT Rourkela</div>
+</div>
+
+<script>
+document.addEventListener('click',function(e){
+  var nav=document.getElementById('nav-links');
+  var ham=document.querySelector('.nav-hamburger');
+  if(nav.classList.contains('open')&&!nav.contains(e.target)&&!ham.contains(e.target)){
+    nav.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>
