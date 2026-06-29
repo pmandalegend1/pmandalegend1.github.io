@@ -65,7 +65,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
     background:var(--gold);
 }
 
-/* NAV MENU — hamburger trigger + dropdown (replaces the old inline link list) */
+/* NAV MENU */
 .nav-menu-btn{
   display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:5px;
   width:34px;height:34px;margin-left:auto;flex-shrink:0;
@@ -184,13 +184,10 @@ main{padding-top:56px}
 
 .hero-contact-row{
     margin-top:16px;
-
     display:flex;
     align-items:center;
     gap:12px;
-
     flex-wrap:wrap;
-
     font-size:.9rem;
 }
 
@@ -199,10 +196,8 @@ main{padding-top:56px}
     display:flex;
     align-items:center;
     gap:8px;
-
     text-decoration:none;
     color:var(--muted);
-
     transition:.25s;
 }
 
@@ -223,13 +218,9 @@ main{padding-top:56px}
     color:rgba(232,184,75,.4);
 }
 .hero-contact .nav-cv{
-
     font-size:.75rem;
-
     padding:.42rem 1rem;
-
     margin-left:4px;
-
     text-decoration:none;
 }
 
@@ -240,6 +231,8 @@ main{padding-top:56px}
 .edu-logo{width:52px;height:52px;flex-shrink:0;border:1px dashed rgba(232,184,75,.4);
   border-radius:4px;background:rgba(13,15,26,.5);object-fit:contain;padding:4px}
 .edu-inst{font-family:var(--font-display);font-size:1.05rem;font-weight:500;color:var(--cream)}
+.edu-inst a{color:var(--cream);text-decoration:none;transition:color .2s}
+.edu-inst a:hover{color:var(--gold)}
 .edu-degree{font-size:.83rem;color:var(--muted);font-style:italic;margin-top:.12rem}
 .edu-divider{height:1px;background:var(--rule)}
 .edu-detail-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.25rem}
@@ -310,7 +303,6 @@ main{padding-top:56px}
   line-height: 1.5;
   overflow: hidden;
 }
-
 .pub-gif img {
   width: 100%;
   height: 100%;
@@ -319,15 +311,14 @@ main{padding-top:56px}
 }
 @media screen and (max-width: 768px) {
   .pub-inner {
-    flex-direction: column; 
-    align-items: stretch;   
-    gap: 1rem;              
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
   }
-
   .pub-gif {
-    width: 100%;       
-    height: 180px;     
-    order: -1;         
+    width: 100%;
+    height: 180px;
+    order: -1;
   }
 }
 
@@ -345,11 +336,12 @@ main{padding-top:56px}
 .proj-title{font-family:var(--font-display);font-size:1.08rem;font-weight:500;color:var(--cream);margin-bottom:.3rem}
 .proj-stack{font-family:var(--font-mono);font-size:.68rem;color:var(--muted);letter-spacing:.04em;margin-top:.65rem}
 .proj-desc{font-size:.9rem;color:rgba(245,240,232,.82);line-height:1.68}
-.proj-links{display:flex;gap:.8rem;margin-top:.9rem;flex-wrap:wrap}
+.proj-links{display:flex;gap:.8rem;margin-top:.9rem;flex-wrap:wrap;align-items:center}
 .proj-link{display:inline-block;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.08em;
   text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;
   transition:border-color .2s,padding-left .2s}
 .proj-link:hover{border-color:var(--gold);padding-left:4px}
+.proj-link-sep{font-family:var(--font-mono);font-size:.68rem;color:rgba(232,184,75,.4)}
 .proj-gif{width:130px;height:100px;flex-shrink:0;border-radius:4px;border:1px dashed rgba(232,184,75,.3);
   background:rgba(13,15,26,.6);display:flex;align-items:center;justify-content:center;
   font-family:var(--font-mono);font-size:.6rem;color:var(--muted);text-align:center;
@@ -389,6 +381,15 @@ main{padding-top:56px}
   font-size:.87rem;color:rgba(245,240,232,.78)}
 .achieve-item::before{content:'✦';color:var(--gold);font-size:.58rem;flex-shrink:0}
 
+/* VOLUNTEERING */
+.volunteer-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+.volunteer-item{padding:1.1rem 1.3rem;display:flex;gap:1rem;align-items:center}
+.volunteer-logo{width:52px;height:52px;flex-shrink:0;border:1px dashed rgba(232,184,75,.4);
+  border-radius:4px;background:rgba(13,15,26,.5);object-fit:contain;padding:4px}
+.volunteer-info{}
+.volunteer-name{font-family:var(--font-display);font-size:1rem;font-weight:500;color:var(--cream);margin-bottom:.15rem}
+.volunteer-duration{font-family:var(--font-mono);font-size:.7rem;color:var(--gold);letter-spacing:.06em}
+
 /* DECLINED */
 .declined-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.1rem}
 .declined-item{padding:1.3rem 1.5rem}
@@ -397,7 +398,7 @@ main{padding-top:56px}
   color:var(--gold);margin-bottom:.5rem}
 .declined-reason{font-size:.85rem;color:rgba(245,240,232,.72);line-height:1.58}
 
-/* CERTS — verified credential cards */
+/* CERTS */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem}
 .cert-card{position:relative;padding:1.15rem 1.25rem 1.1rem;display:flex;flex-direction:column;gap:.55rem;
   background:linear-gradient(160deg,rgba(26,31,58,.72),rgba(13,15,26,.55));overflow:hidden}
@@ -453,31 +454,34 @@ main{padding-top:56px}
 .contact-cta.ghost:hover{border-color:var(--gold);transform:translateY(-2px)}
 
 /* QUOTE band */
-.quote-band{max-width:1100px;margin:0 auto;padding:2.6rem clamp(1.5rem,10vw,10rem);
-  text-align:center;border-bottom:1px solid var(--rule)}
-.quote-band blockquote{font-family:var(--font-display);font-style:italic;font-size:clamp(1.2rem,2.4vw,1.7rem);
-  color:var(--cream);line-height:1.5;max-width:760px;margin:0 auto}
-.quote-band blockquote::before{content:'"';color:var(--gold);font-size:1.6em;line-height:0;vertical-align:-.35em;margin-right:.1em}
-.quote-band blockquote::after{content:'"';color:var(--gold);font-size:1.6em;line-height:0;vertical-align:-.35em;margin-left:.05em}
-.quote-band cite{display:block;font-family:var(--font-mono);font-style:normal;font-size:.72rem;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:1rem}
 
+.quote-band{max-width:1100px;margin:0 auto;padding:2.6rem clamp(1.5rem,10vw,10rem);
+
+  text-align:center;border-bottom:1px solid var(--rule)}
+
+.quote-band blockquote{font-family:var(--font-display);font-style:italic;font-size:clamp(1.2rem,2.4vw,1.7rem);
+
+  color:var(--cream);line-height:1.5;max-width:760px;margin:0 auto}
+
+.quote-band blockquote::before{content:'\201C';color:var(--gold);font-size:1.6em;line-height:0;vertical-align:-.35em;margin-right:.1em}
+
+.quote-band blockquote::after{content:'\201D';color:var(--gold);font-size:1.6em;line-height:0;vertical-align:-.35em;margin-left:.05em}
+
+.quote-band cite{display:block;font-family:var(--font-mono);font-style:normal;font-size:.72rem;
+
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:1rem}
 /* SECTION HEADING */
 .s-heading{font-family:var(--font-display);font-size:clamp(1.9rem,4vw,2.8rem);
   font-weight:400;letter-spacing:-.01em;color:var(--cream);margin-bottom:.35rem}
 .s-heading em{font-style:italic;color:var(--gold)}
 .s-sub{font-size:.89rem;color:var(--muted);margin-bottom:1.4rem;font-weight:300}
 
-/* ==========================================================================
-   UPDATED FOOTER STYLING
-   ========================================================================== */
-
+/* FOOTER */
 .site-footer {
   padding: 2.5rem 0 1.5rem 0;
   border-top: 1px solid rgba(232, 184, 75, 0.1);
   background: transparent;
 }
-
 .footer-inner {
   display: flex;
   justify-content: space-between;
@@ -486,55 +490,22 @@ main{padding-top:56px}
   margin: 0 auto;
   padding: 0 1.6rem;
 }
-
-.footer-left {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.footer-logo {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: var(--cream);
-}
-
-.footer-middle {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.footer-note {
-  font-size: 0.82rem;
-  color: rgba(245, 240, 232, 0.6);
-}
-
-.footer-right {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 2rem;
-}
-
-/* Formatted Back to Top link in italics */
+.footer-left { flex: 1; display: flex; justify-content: flex-start; }
+.footer-logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: bold; color: var(--cream); }
+.footer-middle { flex: 1; display: flex; justify-content: center; }
+.footer-note { font-size: 0.82rem; color: rgba(245, 240, 232, 0.6); }
+.footer-right { flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 2rem; }
 .back-to-top {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-style: italic; 
+  font-style: italic;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--muted);
   text-decoration: none;
   transition: color 0.2s ease;
 }
-
-.back-to-top:hover {
-  color: var(--gold);
-}
-
+.back-to-top:hover { color: var(--gold); }
 .footer-resume-btn {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -548,120 +519,40 @@ main{padding-top:56px}
   text-decoration: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
-
-.footer-resume-btn:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-/* Bottom copyright row */
+.footer-resume-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 .footer-bottom {
   max-width: 1200px;
   margin: 1.5rem auto 0 auto;
   padding: 0 1.6rem;
-  text-align: left; 
+  text-align: left;
 }
+.footer-bottom p { font-size: 0.82rem; color: rgba(245, 240, 232, 0.6); margin: 0; }
 
-.footer-bottom p {
-  font-size: 0.82rem;
-  color: rgba(245, 240, 232, 0.6);
-  margin: 0;
-}
-
-/* Responsive adjustment for clean stacking on mobile viewports */
 @media screen and (max-width: 768px) {
-  .footer-inner {
-    flex-direction: column;
-    gap: 1.2rem;
-    text-align: center;
-  }
-  
-  .footer-left, .footer-middle, .footer-right {
-    justify-content: center;
-    flex: none;
-  }
-
-  .footer-right {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .footer-bottom {
-    text-align: center;
-    margin-top: 1.2rem;
-  }
+  .footer-inner { flex-direction: column; gap: 1.2rem; text-align: center; }
+  .footer-left, .footer-middle, .footer-right { justify-content: center; flex: none; }
+  .footer-right { flex-direction: column; gap: 1rem; }
+  .footer-bottom { text-align: center; margin-top: 1.2rem; }
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px){
-
-    .edu-cards{
-        grid-template-columns:1fr;
-    }
-
-    .exp-header{
-        flex-direction:column;
-    }
-
-    .contact-grid,
-    .achieve-grid{
-        grid-template-columns:1fr;
-    }
-
-    .skill-row{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:.2rem;
-    }
-
-    .skill-row-label{
-        min-width:auto;
-    }
-
-    .pub-inner,
-    .proj-inner{
-        flex-direction:column;
-    }
-
-    .pub-gif,
-    .proj-gif{
-        width:100%;
-        height:110px;
-    }
-
-    .nav-links{
-        display:none;
-    }
-
-    .nav-hamburger{
-        display:flex;
-        flex-direction:column;
-        gap:5px;
-        cursor:pointer;
-        flex-shrink:0;
-    }
+    .edu-cards{ grid-template-columns:1fr; }
+    .exp-header{ flex-direction:column; }
+    .contact-grid, .achieve-grid, .volunteer-grid{ grid-template-columns:1fr; }
+    .skill-row{ flex-direction:column; align-items:flex-start; gap:.2rem; }
+    .skill-row-label{ min-width:auto; }
+    .pub-inner, .proj-inner{ flex-direction:column; }
+    .pub-gif, .proj-gif{ width:100%; height:110px; }
+    .nav-links{ display:none; }
+    .nav-hamburger{ display:flex; flex-direction:column; gap:5px; cursor:pointer; flex-shrink:0; }
 }
-@media(max-width:900px){
-    .nav-links{
-        gap:1.1rem;
-    }
-}
-
+@media(max-width:900px){ .nav-links{ gap:1.1rem; } }
 @media(max-width:700px){
-    .hero{
-        grid-template-columns:1fr;
-    }
-
-    .swirl-star--inline{
-        display:none;
-    }
-
-    .hero-photo{
-        justify-self:start;
-        margin-top:.5rem;
-    }
+    .hero{ grid-template-columns:1fr; }
+    .swirl-star--inline{ display:none; }
+    .hero-photo{ justify-self:start; margin-top:.5rem; }
 }
-
 </style>
 </head>
 <body>
@@ -756,7 +647,6 @@ main{padding-top:56px}
         <img src="images/mckinsey-logo.png" height="16" style="vertical-align: middle; margin-right: 6px;"> 
         McKinsey Forward '26
       </span>
-
       <span class="hero-badge outline">
         <img src="images/gssoc-logo (1).png" height="16" style="vertical-align: middle; margin-right: 6px;"> 
         GSSoC '26
@@ -764,44 +654,27 @@ main{padding-top:56px}
     </div>
     <div class="hero-actions">
     <div class="hero-contact">
-
-        <a href="#contact" class="hero-contact-title">
-            Get in touch
-        </a>
-
+        <a href="#contact" class="hero-contact-title">Get in touch</a>
         <div class="hero-contact-row">
-
             <a href="https://linkedin.com/in/parijat-mandal" target="_blank" class="hero-link">
-                <img src="images/linkedin-logo.png" alt="LinkedIn">
-                LinkedIn
+                <img src="images/linkedin-logo.png" alt="LinkedIn">LinkedIn
             </a>
-
             <span class="hero-divider"> | </span>
-
             <a href="mailto:parijatmandal3631@gmail.com" class="hero-email">
-                <img src="images/gmail-mail.png" alt="Email">
-                Email
+                <img src="images/gmail-mail.png" alt="Email">Email
             </a>
-
             <span class="hero-divider"> | </span>
-
             <a href="https://github.com/pmandalegend1" target="_blank" class="hero-link">
-                <img src="images/Github-logo.png" alt="GitHub">
-                GitHub
+                <img src="images/Github-logo.png" alt="GitHub">GitHub
             </a>
-
             <span class="hero-divider"> | </span>
-
-            <a href="/open.html" class="nav-cv">
-                Resume
-            </a>
+            <a href="/open.html" class="nav-cv">CV / Resume</a>
           </div>
         </div>
       </div>
     </div>
   <div class="hero-photo">
-    <img src="images/photopic.png"
-         alt="Parijat Mandal" class="profile-photo">
+    <img src="images/photopic.png" alt="Parijat Mandal" class="profile-photo">
     <span class="photo-caption">Me in 2010</span>
   </div>
 </div>
@@ -815,28 +688,27 @@ main{padding-top:56px}
       <div class="edu-card-header">
         <img src="images/NITR.png" alt="NIT Rourkela" class="edu-logo">
         <div>
-          <div class="edu-inst">NIT Rourkela</div>
+          <div class="edu-inst"><a href="https://www.nitrkl.ac.in/" target="_blank" rel="noopener">NIT Rourkela</a></div>
           <div class="edu-degree">B.Tech in Computer Science &amp; Engineering</div>
         </div>
       </div>
       <div class="edu-divider"></div>
       <div class="edu-detail-row"><span class="edu-field">Duration</span><span class="edu-value">Aug 2025 – Aug 2029 (expected)</span></div>
-      <div class="edu-detail-row"><span class="edu-field">CGPA</span><span class="edu-value">...</span></div>
+      <div class="edu-detail-row"><span class="edu-field">CGPA</span><span class="edu-value">Subject to market risks</span></div>
       <div class="edu-detail-row"><span class="edu-field">Location</span><span class="edu-value">Rourkela, Odisha</span></div>
     </div>
     <div class="edu-card panel">
       <div class="edu-card-header">
         <img src="images/vrajbhoomi-logo.png" alt="VISMA, Anand" class="edu-logo">
         <div>
-          <div class="edu-inst">Vrajbhoomi International School</div>
-          <div class="edu-degree">PCM with CS</div>
+          <div class="edu-inst"><a href="https://vrajbhoomi.org/mobilevrajbhoomiorg/index.php" target="_blank" rel="noopener">Vrajbhoomi International School</a></div>
+          <div class="edu-degree">PCM with CS \ CBSE Board</div>
         </div>
       </div>
       <div class="edu-divider"></div>
       <div class="edu-detail-row"><span class="edu-field">Duration</span><span class="edu-value">Dec 2015 – Mar 2025</span></div>
-      <div class="edu-detail-row"><span class="edu-field">Class 12</span><span class="edu-value">89.40% (CS: 99/100)</span></div>
-      <div class="edu-detail-row"><span class="edu-field">Class 10</span><span class="edu-value">95.00% (IT: 100/100)</span></div>
-      <div class="edu-detail-row"><span class="edu-field">Board</span><span class="edu-value">CBSE</span></div>
+      <div class="edu-detail-row"><span class="edu-field">Class XII</span><span class="edu-value">89.40% (CS: 99/100)</span></div>
+      <div class="edu-detail-row"><span class="edu-field">Class X</span><span class="edu-value">95.00% (IT: 100/100)</span></div>
     </div>
   </div>
 </section>
@@ -862,12 +734,12 @@ main{padding-top:56px}
         <div class="exp-header">
           <div>
             <div class="exp-role">Summer Research Intern</div>
-            <div class="exp-org"><a href="https://smartmaterialslab.wixsite.com/smartmaterials" target="_blank">SML</a> @ <a href="https://iitgn.ac.in" target="_blank">IIT Gandhinagar</a> &nbsp;· Supervisor: <a href="https://scholar.google.com/citations?user=_KspP2sAAAAJ&hl=en" target="_blank">Dr. Biswajit Saha</a></div>
+            <div class="exp-org"><a href="https://smartmaterialslab.wixsite.com/smartmaterials" target="_blank">SML</a> @ <a href="https://iitgn.ac.in" target="_blank">IIT Gandhinagar</a> &nbsp;|&nbsp; Supervisor: <a href="https://scholar.google.com/citations?user=_KspP2sAAAAJ&hl=en" target="_blank">Dr. Biswajit Saha</a></div>
           </div>
           <div class="exp-date">May 2026 – Present</div>
         </div>
         <ul class="exp-bullets">
-          <li>Working with piezoresistive sensor signals; signal-type-specific data cleaning, preprocessing, decomposition using novel architectures for downstream ML analysis. <a href="https://github.com/pmandalegend1/Research_Project_at_IITGN" target="_blank">[GitHub Link]</a></li>
+          <li>Working with piezoresistive sensor signals; signal-type-specific data cleaning, preprocessing, decomposition using novel architectures for downstream ML analysis. <a href="https://github.com/pmandalegend1/Research_Project_at_IITGN" target="_blank"><span style="text-decoration: underline;">[GitHub]</span></a></li>
           <li>Implementing tailored filtering pipelines per signal type to denoise raw sensor data in preparation for ML model development.</li>
         </ul>
       </div>
@@ -890,12 +762,12 @@ main{padding-top:56px}
         <div class="exp-header">
           <div>
             <div class="exp-role">Summer Intern - CT to MRI Scan using CycleGANs</div>
-            <div class="exp-org"><a href="https://cvbl.iiita.ac.in/" target="_blank">CVBL</a> @ <a href="https://iiita.ac.in/" target="_blank">IIIT Allahabad</a> &nbsp;| Supervisor: <a href="https://scholar.google.com/citations?user=TioEtyEAAAAJ&hl=en&oi=ao" target="_blank">Dr. Shiv Ram Dubey</a></div>
+            <div class="exp-org"><a href="https://cvbl.iiita.ac.in/" target="_blank">CVBL</a> @ <a href="https://iiita.ac.in/" target="_blank">IIIT Allahabad</a> &nbsp;|&nbsp; Supervisor: <a href="https://scholar.google.com/citations?user=TioEtyEAAAAJ&hl=en&oi=ao" target="_blank">Dr. Shiv Ram Dubey</a></div>
           </div>
           <div class="exp-date">June 2026</div>
         </div>
         <ul class="exp-bullets">
-          <li>Working on medical image-to-image translation pipelines mapping between imaging modalities for downstream diagnostic and reconstruction tasks.</li>
+          <li>Working on medical image-to-image translation pipelines mapping between imaging modalities for downstream diagnostic and reconstruction tasks. <a href="https://github.com/pmandalegend1" target="_blank"><span style="text-decoration: underline;">[GitHub]</span></a></li>
           <li>Literature review of generative and translation architectures applied to clinical imaging; dataset curation and preprocessing for model training.</li>
         </ul>
       </div>
@@ -918,12 +790,12 @@ main{padding-top:56px}
         <div class="exp-header">
           <div>
             <div class="exp-role">Machine Learning Research Intern</div>
-            <div class="exp-org"><a href="https://cspit.charusat.ac.in/" target="_blank">CSPIT</a>, <a href="https://charusat.ac.in/" target="_blank">CHARUSAT</a> &nbsp;| Supervisors: <a href="https://scholar.google.com/citations?user=pzgCmusAAAAJ&hl=en" target="_blank">Dr. Nirav Bhatt</a>, <a href="https://scholar.google.com/citations?user=d57JEd4AAAAJ&hl=en" target="_blank">Dr. Ratnakar Dash</a></div>
+            <div class="exp-org"><a href="https://cspit.charusat.ac.in/" target="_blank">CSPIT</a> @ <a href="https://charusat.ac.in/" target="_blank">CHARUSAT</a> &nbsp;|&nbsp; Supervisors: <a href="https://scholar.google.com/citations?user=pzgCmusAAAAJ&hl=en" target="_blank">Dr. Nirav Bhatt</a>, <a href="https://scholar.google.com/citations?user=d57JEd4AAAAJ&hl=en" target="_blank">Dr. Ratnakar Dash</a></div>
           </div>
           <div class="exp-date">Dec 2025 – Jan 2026</div>
         </div>
         <ul class="exp-bullets">
-          <li>Engineered a rotation-aware feature framework modeling delay propagation via buffer depletion and upstream carryover signals, eliminating dependence on meteorological inputs. <a href="https://github.com/pmandalegend1/Flight_delay_prediction_without_over-relying_on_meteorological_data" target="_blank">[GitHub]</a></li>
+          <li>Engineered a rotation-aware feature framework modeling delay propagation via buffer depletion and upstream carryover signals, eliminating dependence on meteorological inputs. <a href="https://github.com/pmandalegend1/Flight_delay_prediction_without_over-relying_on_meteorological_data" target="_blank"><span style="text-decoration: underline;">[GitHub]</span></a></li>
           <li>ROC-AUC of 85.90% and 55% reduction in Brier Score over naive baseline using LightGBM, training 15x faster than CatBoost; viable for real-time deployment.</li>
           <li>Manuscript <em>"Modeling Delay Propagation Without Meteorological Data via a Rotation-Aware Approach"</em> currently under conference review.</li>
         </ul>
@@ -931,38 +803,36 @@ main{padding-top:56px}
     </div>
   </div>
 
-<div class="exp-item panel">
-  <div class="exp-row">
-    <div class="exp-logos">
-      <div>
-        <img src="images/Charusat-logo.png" alt="CHARUSAT" class="exp-logo">
-        <div class="exp-logo-label"></div>
+  <div class="exp-item panel">
+    <div class="exp-row">
+      <div class="exp-logos">
+        <div>
+          <img src="images/Charusat-logo.png" alt="CHARUSAT" class="exp-logo">
+          <div class="exp-logo-label"></div>
+        </div>
+        <div>
+          <img src="images/cspit-logo.png" alt="CSPIT" class="exp-logo">
+          <div class="exp-logo-label">Dept</div>
+        </div>
       </div>
-      <div>
-        <img src="images/cspit-logo.png" alt="CSPIT" class="exp-logo">
-        <div class="exp-logo-label">Dept</div>
+      <div class="exp-main">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">AI-ML Apprentice</div>
+            <div class="exp-org"><a href="https://cspit.charusat.ac.in/" target="_blank">CSPIT</a> @ <a href="https://charusat.ac.in/" target="_blank">CHARUSAT</a> &nbsp;|&nbsp; Supervisor: <a href="https://scholar.google.com/citations?user=pzgCmusAAAAJ&hl=en" target="_blank">Dr. Nirav Bhatt</a></div>
+          </div>
+          <div class="exp-date">May – July 2025</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Built an interactive Dataset Analyzer for CSV/Excel datasets in Jupyter Notebook for data preprocessing, EDA, and visualization using NumPy, Pandas, and Matplotlib. <a href="https://github.com/pmandalegend1/Dataset_Analyzer_using-NumPy_Pandas_and_Matplotlib" target="_blank"><span style="text-decoration: underline;">[GitHub]</span></a></li>
+          <li>Explored computer vision workflows using YOLO for object detection tasks.</li>
+        </ul>
       </div>
     </div>
-    
-    <div class="exp-main">
-      <div class="exp-header">
-        <div>
-          <div class="exp-role">AI-ML Apprentice</div>
-          <div class="exp-org">
-            <a href="https://cspit.charusat.ac.in/" target="_blank">CSPIT</a>, 
-            <a href="https://charusat.ac.in/" target="_blank">CHARUSAT</a> &nbsp;|&nbsp; 
-            Supervisor: <a href="https://scholar.google.com/citations?user=pzgCmusAAAAJ&hl=en" target="_blank">Dr. Nirav Bhatt</a>
-          </div>
-        </div>
-        <div class="exp-date">May – July 2025</div>
-      </div> <ul class="exp-bullets">
-        <li>Built an interactive Dataset Analyzer for CSV/Excel datasets in Jupyter Notebook for data preprocessing, EDA, and visualization using NumPy, Pandas, and Matplotlib. <a href="https://github.com/pmandalegend1/Dataset_Analyzer_using-NumPy_Pandas_and_Matplotlib" target="_blank">[Github]</a></li>
-        <li>Explored computer vision workflows using YOLO for object detection tasks.</li>
-      </ul>
-    </div> </div>
-</div>
+  </div>
 </section>
 
+<!-- PUBLICATIONS -->
 <section class="section" id="publications">
   <div class="section-label">03 — Publications</div>
   <h2 class="s-heading">Papers <em>under review</em></h2>
@@ -975,8 +845,8 @@ main{padding-top:56px}
           <div class="pub-meta">Under Review</div>
           <div class="pub-authors">Parijat Mandal, <a href="https://scholar.google.com/citations?user=pzgCmusAAAAJ&hl=en" target="_blank">Dr. Nirav Bhatt</a>, <a href="https://scholar.google.com/citations?user=d57JEd4AAAAJ&hl=en" target="_blank">Dr. Ratnakar Dash</a></div>
           <div class="pub-links">
-            <a href="https://github.com/pmandalegend1" target="_blank" class="pub-link">GitHub Link (Redacted)</a>
-            <a href="#" class="pub-link">Under Review</a>
+            <a href="https://github.com/pmandalegend1" target="_blank" class="pub-link"><span style="text-decoration: underline;">GitHub Link (Redacted)</span></a>
+            <a href="#" class="pub-link"><span style="text-decoration: underline;">Under Review</span></a>
           </div>
           <p class="pub-desc">Rotation-aware feature framework modeling flight delay propagation via buffer depletion and upstream carryover signals, removing dependence on meteorological inputs. LightGBM achieves ROC-AUC 85.90% and 55% Brier Score reduction, 15x faster than CatBoost.</p>
         </div>
@@ -992,8 +862,8 @@ main{padding-top:56px}
           <div class="pub-meta">Under Review</div>
           <div class="pub-authors">Parijat Mandal, others REDACTED</div>
           <div class="pub-links">
-            <a href="https://github.com/pmandalegend1" target="_blank" class="pub-link">GitHub Link (Redacted)</a>
-            <a href="#" class="pub-link">Under Review</a>
+            <a href="https://github.com/pmandalegend1" target="_blank" class="pub-link"><span style="text-decoration: underline;">GitHub Link (Redacted)</span></a>
+            <a href="#" class="pub-link"><span style="text-decoration: underline;">Under Review</span></a>
           </div>
           <p class="pub-desc">AE-CNNs for evaluating feature sensitivity in microscopy-driven cellular damage pattern recognition.</p>
         </div>
@@ -1005,36 +875,42 @@ main{padding-top:56px}
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section class="section" id="projects">
   <div class="section-label">04 — Projects</div>
   <h2 class="s-heading">Selected <em>work</em></h2>
   <p class="s-sub">Some of my projects (club tasks included)</p>
   <div class="projects-grid">
+    
     <div class="proj-card">
       <div class="proj-inner">
         <div class="proj-text">
-          <div class="proj-title">Flight Delay Prediction Model</div>
-          <p class="proj-desc">7 domain-driven features modeling aircraft delay propagation without meteorological or post-departure variables. Improved ROC-AUC from 0.8221 to 85.90% with a 55% reduction in Brier Score under real-world class imbalance.</p>
-          <div class="proj-links">
-            <a href="https://github.com/pmandalegend1/Flight_delay_prediction_without_over-relying_on_meteorological_data" target="_blank" class="proj-link">GitHub</a>
+          <div class="proj-header" style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div class="proj-title" style="margin: 0;"><em>Flight Delay Prediction Model</em></div> 
+            <div class="proj-links">
+              <a href="https://github.com/pmandalegend1/Flight_delay_prediction_without_over-relying_on_meteorological_data" target="_blank" class="proj-link"><span style="text-decoration: underline;">[GitHub]</span></a>
+            </div>
           </div>
+          <p class="proj-desc">7 domain-driven features modeling aircraft delay propagation without meteorological or post-departure variables. Improved ROC-AUC from 0.8221 to 85.90% with a 55% reduction in Brier Score under real-world class imbalance.</p> 
           <div class="proj-stack">Python | Pandas | NumPy | Scikit-learn | LightGBM</div>
         </div>
       </div>
     </div>
+    
     <div class="proj-card">
       <div class="proj-inner">
         <div class="proj-text">
-          <div class="proj-title">Dataset Analyzer</div>
-          <p class="proj-desc">Interactive tool to explore, clean, and visualize CSV/Excel datasets. Dynamic handling of missing values, column operations, and statistical summaries — designed for fast exploratory analysis.</p>
-          <div class="proj-links">
-            <a href="https://github.com/pmandalegend1/Dataset_Analyzer_using-NumPy_Pandas_and_Matplotlib" target="_blank" class="proj-link">GitHub</a>
+          <div class="proj-header" style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div class="proj-title" style="margin: 0;"><em>Dataset Analyzer</em></div> 
+            <div class="proj-links">
+              <a href="https://github.com/pmandalegend1/Dataset_Analyzer_using-NumPy_Pandas_and_Matplotlib" target="_blank" class="proj-link"><span style="text-decoration: underline;">[GitHub]</span></a>
+            </div>
           </div>
+          <p class="proj-desc">Interactive tool to explore, clean, and visualize CSV/Excel datasets. Dynamic handling of missing values, column operations, and statistical summaries — designed for fast exploratory analysis.</p>
           <div class="proj-stack">Python | NumPy | Pandas | Matplotlib</div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1043,35 +919,40 @@ main{padding-top:56px}
   <div class="section-label">05 — Skills</div>
   <h2 class="s-heading">Technical <em>toolkit</em></h2>
   <div class="skills-list">
-    <div class="skill-row panel"><span class="skill-row-label">Languages</span><span class="skill-row-items">Python, C++, SQL</span></div>
+    <div class="skill-row panel"><span class="skill-row-label">Languages</span><span class="skill-row-items">SQL, Python, C++</span></div>
     <div class="skill-row panel"><span class="skill-row-label">Libraries</span><span class="skill-row-items">Pandas, NumPy, Matplotlib, Scikit-learn, LightGBM</span></div>
     <div class="skill-row panel"><span class="skill-row-label">Tools</span><span class="skill-row-items">Git / GitHub, Jupyter, VS Code, LaTeX</span></div>
-    <div class="skill-row panel"><span class="skill-row-label">Concepts</span><span class="skill-row-items">Machine Learning, Feature Engineering, EDA, AI, YOLO</span></div>
+    <div class="skill-row panel"><span class="skill-row-label">Concepts</span><span class="skill-row-items">Machine Learning, Feature Engineering, Signal Processing, Databases</span></div>
     <div class="skill-row panel"><span class="skill-row-label">Databases</span><span class="skill-row-items">MySQL</span></div>
   </div>
 </section>
 
-<!-- CODING PROFILES -->
 <section class="section" id="coding">
   <div class="section-label">06 — Competitive Programming</div>
   <h2 class="s-heading">Coding <em>profiles</em></h2>
-  <div class="coding-row">
+  
+  <div class="coding-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; gap: 15px;">
+    
     <a class="coding-card panel" href="#" target="_blank">
       <img src="images/Codeforces-logo.png" alt="Codeforces" class="coding-logo">
       <div><div class="platform">Codeforces</div><div class="rating">Max: 935</div></div>
     </a>
+    
     <a class="coding-card panel" href="#" target="_blank">
       <img src="images/Codechef-logo.png" alt="CodeChef" class="coding-logo">
       <div><div class="platform">CodeChef</div><div class="rating">Max: 1110</div></div>
     </a>
+    
     <a class="coding-card panel" href="#" target="_blank">
       <img src="images/Leetcode-logo.png" alt="LeetCode" class="coding-logo">
-      <div><div class="platform">LeetCode</div><div class="rating">Profile</div></div>
+      <div><div class="platform">LeetCode</div><div class="rating" style="color:var(--gold)">Redacted</div></div>
     </a>
+    
     <a class="coding-card panel" href="#" target="_blank">
       <img src="images/Codolio-logo.png" alt="Codolio" class="coding-logo">
-      <div><div class="platform">Codolio</div><div class="rating">Profile</div></div>
+      <div><div class="platform">Codolio</div><div class="rating" style="color:var(--gold)">Redacted</div></div>
     </a>
+    
   </div>
 </section>
 
@@ -1083,41 +964,27 @@ main{padding-top:56px}
     <div class="club-item panel">
       <div class="club-header">
         <img src="images/Webwiz-logo.png" alt="WebWiz" class="club-logo">
-        <div><div class="club-name">WebWiz</div><div class="club-role">AI/ML Member</div></div>
+        <div>
+          <div class="club-name"><a href="https://webwiznitr.netlify.app/" target="_blank" rel="noopener" style="color:var(--cream);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--cream)'">WebWiz</a></div>
+          <div class="club-role">AI/ML Member</div>
+        </div>
       </div>
       <ul class="club-projects">
-        <li>
-        <strong>Task 1</strong> | 
-        <a href="https://github.com/pmandalegend1/WebWiz-tasks/tree/main/task-1" target="_blank" style="text-decoration: none; color: inherit;">
-          GitHub &rarr;
-        </a>
-      </li>
-      <li>
-        <strong>Task 2</strong> | 
-        <a href="https://github.com/pmandalegend1/WebWiz-tasks/tree/main/task-2" target="_blank" style="text-decoration: none; color: inherit;">
-          GitHub &rarr;
-        </a>
-      </li>
+        <li><strong>Task 1</strong> | <a href="https://github.com/pmandalegend1/WebWiz-tasks/tree/main/task-1" target="_blank" style="text-decoration: none; color: inherit;"><span style="text-decoration: underline;">[GitHub]</span> &rarr;</a></li>
+        <li><strong>Task 2</strong> | <a href="https://github.com/pmandalegend1/WebWiz-tasks/tree/main/task-2" target="_blank" style="text-decoration: none; color: inherit;"><span style="text-decoration: underline;">[GitHub]</span> &rarr;</a></li>
       </ul>
     </div>
     <div class="club-item panel">
       <div class="club-header">
         <img src="images/Opencode-logo.png" alt="OpenCode" class="club-logo">
-        <div><div class="club-name">OpenCode</div><div class="club-role">AI/ML Member</div></div>
+        <div>
+          <div class="club-name"><a href="https://opencodenitr.in/" target="_blank" rel="noopener" style="color:var(--cream);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--cream)'">OpenCode</a></div>
+          <div class="club-role">AI/ML Member</div>
+        </div>
       </div>
       <ul class="club-projects">
-        <li>
-        <strong>Task 1</strong> | 
-        <a href="https://github.com/pmandalegend1/OPENCODE-tasks/tree/main/task-1" target="_blank" style="text-decoration: none; color: inherit;">
-          GitHub &rarr;
-        </a>
-      </li>
-      <li>
-        <strong>Task 2</strong> |  
-        <a href="https://github.com/pmandalegend1/OPENCODE-tasks/tree/main/task-2" target="_blank" style="text-decoration: none; color: inherit;">
-          GitHub &rarr;
-        </a>
-      </li>
+        <li><strong>Task 1</strong> | <a href="https://github.com/pmandalegend1/OPENCODE-tasks/tree/main/task-1" target="_blank" style="text-decoration: none; color: inherit;"><span style="text-decoration: underline;">[GitHub]</span> &rarr;</a></li>
+        <li><strong>Task 2</strong> | <a href="https://github.com/pmandalegend1/OPENCODE-tasks/tree/main/task-2" target="_blank" style="text-decoration: none; color: inherit;"><span style="text-decoration: underline;">[GitHub]</span> &rarr;</a></li>
       </ul>
     </div>
   </div>
@@ -1126,59 +993,72 @@ main{padding-top:56px}
 <!-- ACHIEVEMENTS -->
 <section class="section" id="achievements">
   <div class="section-label">08 — Achievements</div>
-  <h2 class="s-heading">Honors &amp; <em>recognition</em></h2>
+  <h2 class="s-heading">Selections &amp; <em>recognition</em></h2>
   <div class="achieve-grid">
-    <div class="achieve-item panel">Selected for McKinsey Forward 2026</div>
-    <div class="achieve-item panel">Selected for GSSoC '26</div>
-    <div class="achieve-item panel">AI/ML Member of WebWiz &amp; OpenCode</div>
+    <div class="achieve-item panel">Selected for McKinsey Forward 2026 <img src="images/mckinsey-logo.png" height="16" style="vertical-align: middle; margin-right: 6px;"></div>
+    <div class="achieve-item panel">Selected for GSSoC '26 <img src="images/gssoc-logo (1).png" height="16" style="vertical-align: middle; margin-right: 6px;"></div>
   </div>
 </section>
 
-<!-- PRIOR ACCOMPLISHMENTS -->
-<section class="section" id="prior-accomplishments">
-  <div class="section-label">09 — Prior Accomplishments</div>
-  <h2 class="s-heading">Earlier <em>accomplishments</em></h2>
-  <div class="achieve-grid">
-    <p>A list of achievements during my School days:</p>
-    <div class="achieve-item panel">14x SOF Olympiad Medalist</div>
-    <div class="achieve-item panel">Britannia Conquest I.Q. Olympiad - Gold Medal</div>
-    <div class="achieve-item panel">3x Public Speaking Winner (Extempore)</div>
-    <div class="achieve-item panel">ASSET National Group of Scholars (2 Years)</div>
-    <div class="achieve-item panel">Academic Secretary</div>
-    <div class="achieve-item panel">8x Inter-school Participations</div>
-    <div class="achieve-item panel">VISMA UTSAV 2016 - 2nd Place</div>
-    <div class="achieve-item panel">Book Club Member</div>
-    <div class="achieve-item panel">Awarded 40+ certificates in 6 years</div>
+<!-- VOLUNTEERING -->
+<section class="section" id="volunteering">
+  <div class="section-label">09 — Volunteering</div>
+  <h2 class="s-heading">Volunteering <em>Experiences</em></h2>
+  <div class="volunteer-grid">
+    
+    <div class="volunteer-item panel">
+      <img src="images/cry.png" alt="CRY" class="volunteer-logo">
+      <div class="volunteer-info" style="flex-grow: 1;">
+        <div class="volunteer-name">
+          <a href="https://www.cry.org/" target="_blank" rel="noopener noreferrer" 
+             style="color:var(--cream); text-decoration:none; display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
+            <span class="org-acronym" style="color: var(--gold);">CRY</span>
+            <span class="org-duration" style="font-size: 0.9em; opacity: 0.85;">1 month</span>
+          </a>
+        </div>
+        <div class="volunteer-full">Child Rights &amp; You</div>
+      </div>
+    </div>
+    
+    <div class="volunteer-item panel">
+      <img src="images/nss.png" alt="NSS" class="volunteer-logo">
+      <div class="volunteer-info" style="flex-grow: 1;">
+        <div class="volunteer-name">
+          <a href="https://www.nss.gov.in/" target="_blank" rel="noopener noreferrer" 
+             style="color:var(--cream); text-decoration:none; display: flex; justify-content: space-between; align-items: baseline; width: 100%;">
+            <span class="org-acronym" style="color: var(--gold);">NSS</span>
+            <span class="org-duration" style="font-size: 0.9em; opacity: 0.85;">4 months</span>
+          </a>
+        </div>
+        <div class="volunteer-full">National Service Scheme</div>
+      </div>
+    </div>
+
   </div>
 </section>
-
 
 <!-- Declined Offers -->
 <section class="section" id="declined-offers">
-  <div class="section-label">10 — Declined Offers</div>
-  <h2 class="s-heading">Declined <em>offers &amp; selections</em></h2>
+  <div class="section-label">10 — Offers I Declined</div>
+  <h2 class="s-heading">Offers I had to <em>decline</em></h2>
   <div class="declined-content">
-    <p>Though grateful for the opportunities, I was unable to accept these offers due to prior commitments or scheduling conflicts:</p>
-    <ul>
-      <li><strong>IIT Ropar VLED (was selected)</strong> – Declined due to conflicting academic commitments.</li>
-      <li><strong>RVU Cybersec (was selected)</strong> – Unable to accept due to scheduling overlaps.</li>
-      <li><strong>CVIT Summer School, IIITH (was a top selected candidate)</strong> – Passed on the selection due to prior research commitments.</li>
-      <li><strong>UT Knoxville ML Summer School (was offered)</strong> – Couldn't attend due to non-availability during the program dates.</li>
-      <li><strong>NIT Rourkela Summer Internship (was offered)</strong> – Declined the offer due to concurrent internship schedules.</li>
+    <p style="font-size:.99rem;color:var(--muted);margin-bottom:1rem">Though grateful for the opportunities, I was unable to accept these offers due to prior commitments or scheduling conflicts:</p>
+    <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:.75rem">
+      <li style="font-size:.88rem;color:rgba(245,240,232,.78);padding-left:1.2rem;position:relative;line-height:1.6"><span style="position:absolute;left:0;top:.6rem;width:6px;height:1px;background:var(--gold);display:block"></span><strong><a href="https://www.iitrpr.ac.in/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none">IIT Ropar</a> VLED (was selected)</strong> – Declined due to conflicting academic commitments.</li>
+      <li style="font-size:.88rem;color:rgba(245,240,232,.78);padding-left:1.2rem;position:relative;line-height:1.6"><span style="position:absolute;left:0;top:.6rem;width:6px;height:1px;background:var(--gold);display:block"></span><strong><a href="https://rvu.edu.in/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none">RVU</a> Cybersec (was selected)</strong> – Unable to accept due to scheduling overlaps.</li>
+      <li style="font-size:.88rem;color:rgba(245,240,232,.78);padding-left:1.2rem;position:relative;line-height:1.6"><span style="position:absolute;left:0;top:.6rem;width:6px;height:1px;background:var(--gold);display:block"></span><strong><a href="https://cvit.iiit.ac.in/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none">CVIT</a> Summer School, <a href="https://www.iiit.ac.in/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none">IIITH</a> (was a top selected candidate)</strong> – Passed on the selection due to prior research commitments.</li>
+      <li style="font-size:.88rem;color:rgba(245,240,232,.78);padding-left:1.2rem;position:relative;line-height:1.6"><span style="position:absolute;left:0;top:.6rem;width:6px;height:1px;background:var(--gold);display:block"></span><strong><a href="https://www.utk.edu/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none">UT Knoxville</a> ML Summer School (was offered)</strong> – Couldn't attend due to non-availability during the program dates.</li>
+      <li style="font-size:.88rem;color:rgba(245,240,232,.78);padding-left:1.2rem;position:relative;line-height:1.6"><span style="position:absolute;left:0;top:.6rem;width:6px;height:1px;background:var(--gold);display:block"></span><strong><a href="https://www.nitrkl.ac.in/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none">NIT Rourkela</a> Summer Internship (was offered)</strong> – Declined the offer due to concurrent internship schedules.</li>
     </ul>
   </div>
 </section>
-
 
 <!-- CERTIFICATIONS -->
 <section class="section" id="certifications">
   <div class="section-label">11 — Certifications</div>
   <h2 class="s-heading">Verified <em>credentials</em></h2>
   <p class="s-sub">Each credential is issuer-signed and verifiable at source. Click <em>Verify</em> to open the original certificate.</p>
-  <p style="margin-bottom:1.5rem; font-family:var(--font-mono); font-size:.7rem; color:var(--muted); letter-spacing:.02em;">
-    <strong>Notice:</strong> If a certificate link requires permissions to view, please contact me directly for full access.
-  </p>
-
+  <strong>Notice:</strong> If a certificate link requires permissions to view, please <em>contact me directly</em> for <em>full access</em>.
   <div class="cert-grid">
 
     <div class="cert-card panel">
@@ -1186,7 +1066,7 @@ main{padding-top:56px}
       <div class="cert-head"><span class="dot"></span>Verified Credential</div>
       <div class="cert-title">Problem-driven AI</div>
       <div class="cert-issuer">By NIT Rourkela</div>
-      <a class="cert-verify" href="https://drive.google.com/file/d/1CaHn9rDUo9LZSbyKZFjexrSCldcvbNhL/view?usp=sharing" target="_blank" rel="noopener">Verify credential →</a>
+      <a class="cert-verify" href="https://drive.google.com/file/d/1CaHn9rDUo9LZSbyKZFjexrSCldcvbNhL/view?usp=sharing" target="_blank" rel="noopener">View →</a>
     </div>
 
     <div class="cert-card panel">
@@ -1194,7 +1074,7 @@ main{padding-top:56px}
       <div class="cert-head"><span class="dot"></span>Verified Credential</div>
       <div class="cert-title">Lightweight Cryptographic Techniques for IoT</div>
       <div class="cert-issuer">By NIT Rourkela</div>
-      <a class="cert-verify" href="https://drive.google.com/file/d/1WWWuw6tWgE82jABRgDpT2eVw5KIho_Vm/view?usp=drive_link" target="_blank" rel="noopener">Verify credential →</a>
+      <a class="cert-verify" href="https://drive.google.com/file/d/1WWWuw6tWgE82jABRgDpT2eVw5KIho_Vm/view?usp=drive_link" target="_blank" rel="noopener">View →</a>
     </div>
 
     <div class="cert-card panel">
@@ -1202,7 +1082,7 @@ main{padding-top:56px}
       <div class="cert-head"><span class="dot"></span>Verified Credential</div>
       <div class="cert-title">ACCT-CPS</div>
       <div class="cert-issuer">By NIT Rourkela</div>
-      <a class="cert-verify" href="https://drive.google.com/file/d/1u_M3xYDi2fSjHgISLs3lTDzao6MemQm8/view?usp=sharing" target="_blank" rel="noopener">Verify credential →</a>
+      <a class="cert-verify" href="https://drive.google.com/file/d/1u_M3xYDi2fSjHgISLs3lTDzao6MemQm8/view?usp=sharing" target="_blank" rel="noopener">View →</a>
     </div>
 
     <div class="cert-card panel">
@@ -1210,7 +1090,7 @@ main{padding-top:56px}
       <div class="cert-head"><span class="dot"></span>Verified Credential</div>
       <div class="cert-title">Digital Twins &amp; Agentic AI</div>
       <div class="cert-issuer">By BITS Pilani</div>
-      <a class="cert-verify" href="https://drive.google.com/file/d/1i6CoPr9WT8kxtvkCTWZqMRyW7MXyzT9o/view?usp=sharing" target="_blank" rel="noopener">Verify credential →</a>
+      <a class="cert-verify" href="https://drive.google.com/file/d/1i6CoPr9WT8kxtvkCTWZqMRyW7MXyzT9o/view?usp=sharing" target="_blank" rel="noopener">View →</a>
     </div>
 
     <div class="cert-card panel">
@@ -1218,7 +1098,7 @@ main{padding-top:56px}
       <div class="cert-head"><span class="dot"></span>Verified Credential</div>
       <div class="cert-title">C++ Programming Course</div>
       <div class="cert-issuer">By GeeksforGeeks</div>
-      <a class="cert-verify" href="https://drive.google.com/file/d/1mFszu3KHqORth7vXSHCrMZDZTtu3iFU1/view?usp=sharing" target="_blank" rel="noopener">Verify credential →</a>
+      <a class="cert-verify" href="https://drive.google.com/file/d/1mFszu3KHqORth7vXSHCrMZDZTtu3iFU1/view?usp=sharing" target="_blank" rel="noopener">View →</a>
     </div>
 
     <div class="cert-card panel">
@@ -1227,8 +1107,8 @@ main{padding-top:56px}
       <div class="cert-title">Pandas &amp; Intro to Machine Learning</div>
       <div class="cert-issuer">By Kaggle</div>
       <div style="display:flex;gap:.8rem;flex-wrap:wrap">
-        <a class="cert-verify" href="https://drive.google.com/file/d/1o__qy1E0oHCY3IhphzJHYZbz9ALtLBwP/view?usp=sharing" target="_blank" rel="noopener">Verify Pandas →</a>
-        <a class="cert-verify" href="https://drive.google.com/file/d/1IH6ehPVjPwKX50ondi6dULs3d--Xu7w7/view?usp=sharing" target="_blank" rel="noopener">Verify ML →</a>
+        <a class="cert-verify" href="https://drive.google.com/file/d/1o__qy1E0oHCY3IhphzJHYZbz9ALtLBwP/view?usp=sharing" target="_blank" rel="noopener">View →</a>
+        <a class="cert-verify" href="https://drive.google.com/file/d/1IH6ehPVjPwKX50ondi6dULs3d--Xu7w7/view?usp=sharing" target="_blank" rel="noopener">View →</a>
       </div>
     </div>
 
@@ -1237,7 +1117,7 @@ main{padding-top:56px}
       <div class="cert-head"><span class="dot"></span>Verified Credential</div>
       <div class="cert-title">AI for Genomic Data</div>
       <div class="cert-issuer">By Labroots</div>
-      <a class="cert-verify" href="https://drive.google.com/file/d/17zR-44HdwC2KLb1sC5gXc37gDiYv4gRh/view?usp=sharing" target="_blank" rel="noopener">Verify credential →</a>
+      <a class="cert-verify" href="https://drive.google.com/file/d/17zR-44HdwC2KLb1sC5gXc37gDiYv4gRh/view?usp=sharing" target="_blank" rel="noopener">View →</a>
     </div>
 
     <div class="cert-card panel">
@@ -1245,46 +1125,57 @@ main{padding-top:56px}
       <div class="cert-head"><span class="dot"></span>Verified Credential</div>
       <div class="cert-title">Data Science &amp; Analytics Basics</div>
       <div class="cert-issuer">By HP LIFE</div>
-      <a class="cert-verify" href="https://drive.google.com/file/d/12IwNfiUvmM-GqdCH9uKOqUXnHpf-Cji2/view?usp=drive_link" target="_blank" rel="noopener">Verify credential →</a>
+      <a class="cert-verify" href="https://drive.google.com/file/d/12IwNfiUvmM-GqdCH9uKOqUXnHpf-Cji2/view?usp=drive_link" target="_blank" rel="noopener">View →</a>
     </div>
 
   </div>
 </section>
 
+<!-- PRIOR ACCOMPLISHMENTS -->
+<section class="section" id="prior-accomplishments">
+  <div class="section-label">12 — Prior Accomplishments</div>
+  <h2 class="s-heading">Earlier <em>accomplishments</em></h2>
+  <div class="achieve-grid">
+    <p style="grid-column:1/-1;font-size:.89rem;color:var(--muted);margin-bottom:.5rem">A list of achievements during my School days @ <strong style="color:var(--cream)">VISMA</strong>:</p>
+    <div class="achieve-item panel">14x SOF Olympiad Medalist</div>
+    <div class="achieve-item panel">Britannia Conquest I.Q. Olympiad - Gold Medal</div>
+    <div class="achieve-item panel">3x Public Speaking Winner (Extempore)</div>
+    <div class="achieve-item panel">ASSET National Group of Scholars (2 Years)</div>
+    <div class="achieve-item panel">Academic Secretary</div>
+    <div class="achieve-item panel">8x Inter-school Participations</div>
+    <div class="achieve-item panel">VISMA UTSAV 2016 - 2nd Place</div>
+    <div class="achieve-item panel">Book Club Member</div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="section" id="contact">
-  <div class="section-label">12 — Contact</div>
+  <div class="section-label">13 — Contact</div>
   <h2 class="s-heading">Get in <em>touch</em></h2>
   <p class="s-sub">Best reached over email or LinkedIn.</p>
   <div class="contact-grid">
     <div class="contact-info panel">
       <a class="contact-link" href="mailto:parijatmandal3631@gmail.com">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-        parijatmandal3631@gmail.com
+        <span style="text-decoration: underline;">Email</span> - parijatmandal3631@gmail.com
       </a>
       <a class="contact-link" href="https://www.linkedin.com/in/parijat-mandal/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.06c.53-1 1.83-2.05 3.77-2.05 4.04 0 4.79 2.65 4.79 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21h-4z"/></svg>
-        LinkedIn — /in/parijat-mandal
+        <span style="text-decoration: underline;">LinkedIn</span> - /in/parijat-mandal
       </a>
       <a class="contact-link" href="https://github.com/pmandalegend1" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2.1c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.3.8 1 .8 2v3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
-        GitHub — @pmandalegend1
-      </a>
-      <a class="contact-link" href="tel:+919099264654">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.86 19.86 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.8a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.84.57 2.8.7A2 2 0 0122 16.92z"/></svg>
-        +91 90992 64654
+        <span style="text-decoration: underline;">GitHub</span> - @pmandalegend1
       </a>
       <div class="contact-detail">
-        Anand, Gujarat, India · NIT Rourkela, Odisha<br>
-        Spoken: English · Hindi · Bengali · Gujarati<br>
-        Time zone: IST (UTC+5:30) · Open to U.S. time-zone calls
+        Fluent in: English, Hindi, Bengali &amp Gujarati
       </div>
     </div>
     <div class="contact-open panel">
-      <span class="availability"><span class="pulse"></span>Available · Summer &amp; Fall '26</span>
+      <span class="availability"><span class="pulse"></span>Available · Fall '26</span>
       <h2>Open to opportunities</h2>
       <div class="contact-cta-row">
-        <a class="contact-cta primary" href="/open.html">View full availability →</a>
+        <a class="contact-cta primary" href="/open.html">CV / RESUME →</a>
         <a class="contact-cta ghost" href="mailto:parijatmandal3631@gmail.com">Email me</a>
       </div>
     </div>
@@ -1292,38 +1183,32 @@ main{padding-top:56px}
 </section>
 
 <!-- QUOTE BAND -->
-<div class="quote-band">
+<section class="quote-band" id="quote-reveal">
   <blockquote>I dream of painting, and then I paint my dream.</blockquote>
-  <cite>— Vincent van Gogh</cite>
-</div>
+  <cite>— Vincent Van Gogh</cite>
+</section>
 
 </main>
 
 <footer class="site-footer">
   <div class="footer-inner">
-    
     <div class="footer-left">
       <span class="footer-logo">Parijat Mandal</span>
     </div>
-    
     <div class="footer-middle">
       <span class="footer-note">Crafted under a starry night</span>
     </div>
-    
     <div class="footer-right">
       <a href="#" class="back-to-top">Back to Top &uarr;</a>
       <a href="open.html" target="_blank" class="footer-resume-btn">Resume</a>
     </div>
-
   </div>
-
   <div class="footer-bottom">
     <p>&copy; 2026 Parijat Mandal &middot; All rights reserved</p>
   </div>
 </footer>
 
 <script>
-
 const navBtn = document.getElementById("nav-menu-btn");
 const navPanel = document.getElementById("nav-menu-panel");
 
@@ -1367,7 +1252,7 @@ document.addEventListener("keydown",(e)=>{
         closeNavMenu();
     }
 });
-
 </script>
+
 </body>
 </html>
