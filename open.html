@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Open to Opportunities — Parijat Mandal</title>
-<meta name="description" content="Parijat Mandal — open to research internships in ML, AI and signal processing.">
+<title>Resume page</title>
+<meta name="description" content="Open to research internships in ML, AI, LLM, DL and signal processing. My work is pretty much interdisciplinary.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -38,9 +38,37 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   padding:0 clamp(1.5rem,5vw,4rem);height:56px;background:rgba(13,15,26,.88);backdrop-filter:blur(12px);
   border-bottom:1px solid var(--rule)}
 .nav-logo{font-family:var(--font-display);font-size:1.15rem;color:var(--gold);text-decoration:none}
-.nav-links{display:flex;gap:1.6rem;list-style:none}
-.nav-links a{font-size:.76rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+
+.nav-menu-btn{display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:5px;
+  width:34px;height:34px;margin-left:auto;flex-shrink:0;background:transparent;border:none;cursor:pointer;
+  padding:6px;border-radius:4px;transition:background .2s;-webkit-tap-highlight-color:transparent}
+.nav-menu-btn:hover{background:rgba(255,255,255,.06)}
+.nav-menu-btn span{display:block;width:22px;height:2px;border-radius:2px;background:#e7e8ec;
+  transition:transform .28s ease,opacity .28s ease,width .28s ease}
+.nav-menu-btn.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-menu-btn.is-open span:nth-child(2){opacity:0;width:0}
+.nav-menu-btn.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.nav-menu-panel{position:fixed;top:56px;right:clamp(1.2rem,5vw,4rem);width:220px;
+  background:rgba(24,24,27,.97);border:1px solid rgba(255,255,255,.1);border-radius:0 0 10px 10px;
+  box-shadow:0 18px 36px rgba(0,0,0,.45);backdrop-filter:blur(14px);
+  max-height:0;opacity:0;overflow:hidden;pointer-events:none;
+  transition:max-height .3s ease,opacity .22s ease;z-index:99}
+.nav-menu-panel.is-open{max-height:480px;opacity:1;pointer-events:auto}
+.nav-menu-panel ul{list-style:none;padding:.4rem 0;margin:0}
+.nav-menu-panel li a{display:block;padding:.72rem 1.3rem;font-size:.8rem;font-weight:500;letter-spacing:.06em;
+  text-transform:uppercase;color:#d4d4d8;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.07);
+  transition:background .18s,color .18s,padding-left .18s}
+.nav-menu-panel li:last-child a{border-bottom:none}
+.nav-menu-panel li a:hover,.nav-menu-panel li a.active{background:rgba(255,255,255,.08);color:var(--gold);padding-left:1.6rem}
+body.nav-menu-open{overflow:hidden}
+
+@media(max-width:700px){
+  .nav-menu-panel{top:56px;left:0;right:0;width:100%;border-radius:0;max-height:0}
+  .nav-menu-panel.is-open{max-height:calc(100vh - 56px);height:calc(100vh - 56px);overflow-y:auto}
+  .nav-menu-panel ul{padding:.6rem 0}
+  .nav-menu-panel li a{padding:1.15rem 1.6rem;font-size:.95rem}
+}
 
 /* HERO */
 main{padding-top:56px}
@@ -118,7 +146,6 @@ footer{max-width:980px;margin:0 auto;padding:1.4rem clamp(1.5rem,8vw,6rem) 2rem;
 footer .gold{color:var(--gold)}
 
 @media(max-width:700px){
-  .nav-links{display:none}
   .cv-frame iframe{height:520px}
 }
 </style>
@@ -153,67 +180,24 @@ footer .gold{color:var(--gold)}
 </div>
 
 <nav>
-  <a class="nav-logo" href="/portfolio.html">Parijat Mandal</a>
-  <ul class="nav-links">
-    <li><a href="/portfolio.html">Portfolio</a></li>
-    <li><a href="/portfolio.html#experience">Experience</a></li>
-    <li><a href="/portfolio.html#publications">Publications</a></li>
-    <li><a class="active" href="/open.html">Resume</a></li>
-    <li><a href="/portfolio.html#contact">Contact</a></li>
-  </ul>
+  <a class="nav-logo" href="https://pmandalegend1.github.io/">Parijat Mandal</a>
+  <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-menu-panel">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-menu-panel" id="nav-menu-panel">
+    <ul>
+      <li><a href="https://pmandalegend1.github.io/">Portfolio</a></li>
+      <li><a href="https://pmandalegend1.github.io/#experience">Experience</a></li>
+      <li><a class="active" href="https://pmandalegend1.github.io/open.html">Resume</a></li>
+      <li><a href="https://pmandalegend1.github.io/#contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
 <main>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow"><span class="pulse"></span>Available · Summer &amp; Fall 2026</div>
-    <h1>I'm <em>open</em><br>to opportunities</h1>
-    <p class="hero-sub">First-year CSE undergraduate at NIT Rourkela. Looking for research internships in machine learning, deep learning, and signal processing — across India and the United States.</p>
-  </div>
-</section>
-
-<!-- INTRO -->
-<section class="block">
-  <div class="section-label">About</div>
-  <h2 class="s-heading">A short <em>introduction</em></h2>
-  <div class="intro">
-    <p>I build ML systems grounded in <strong>physical intuition</strong> — the kind that fall out of how a sensor actually behaves, how a flight schedule actually propagates, or how a medical image is actually formed. I care less about chasing benchmarks and more about whether a model is doing something a domain expert would recognise as <em>reasonable</em>.</p>
-    <p>Right now I'm a concurrent research intern at <strong>IIT Gandhinagar</strong> (piezoresistive sensor pipelines, with Dr. Biswajit Saha) and <strong>IIIT Allahabad</strong> (medical image translation, with Dr. Shiv Ram Dubey). My first paper — a rotation-aware approach to flight delay propagation — is under conference review.</p>
-    <p>I'm a <strong>U.S. citizen</strong> based in India, so I'm equally available for roles in either country, remote or on-site. The fastest way to reach me is <a href="mailto:parijatmandal3631@gmail.com" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(232,184,75,.4)">email</a>.</p>
-  </div>
-
-  <div class="facts">
-    <div class="fact"><div class="fact-label">Status</div><div class="fact-value">Open · Actively looking</div><div class="fact-sub">Summer &amp; Fall 2026</div></div>
-    <div class="fact"><div class="fact-label">Location</div><div class="fact-value">India / U.S.</div><div class="fact-sub">U.S. citizen · remote OK</div></div>
-    <div class="fact"><div class="fact-label">Focus</div><div class="fact-value">ML · DL · Signal Processing</div><div class="fact-sub">Medical imaging, sensor data</div></div>
-    <div class="fact"><div class="fact-label">Response time</div><div class="fact-value">&lt; 24 hours</div><div class="fact-sub">Email or LinkedIn</div></div>
-  </div>
-</section>
-
-<!-- LOOKING FOR -->
-<section class="block">
-  <div class="section-label">What I'm looking for</div>
-  <h2 class="s-heading">Roles &amp; <em>collaborations</em></h2>
-  <div class="looking">
-    <div class="look-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11V7a3 3 0 016 0v4"/><rect x="4" y="11" width="16" height="10" rx="2"/></svg>
-      <div><h4>Research internships</h4><p>University labs or industry research — ML, DL, signal processing, medical imaging.</p></div>
-    </div>
-    <div class="look-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/></svg>
-      <div><h4>Applied ML projects</h4><p>Production-leaning work where the model has to ship under real-world constraints.</p></div>
-    </div>
-    <div class="look-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
-      <div><h4>Paper co-authorships</h4><p>Reproducibility work, ablation studies, dataset curation, or full-stack model contributions.</p></div>
-    </div>
-    <div class="look-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
-      <div><h4>Open-source / GSoC-style</h4><p>Long-form contributions to ML libraries, evaluation tooling, or scientific software.</p></div>
-    </div>
-  </div>
+<section class="block" style="border-bottom:1px solid var(--rule);text-align:center;padding-top:clamp(3rem,6vw,4rem)">
+  <p style="font-size:1.05rem;color:rgba(245,240,232,.85);max-width:640px;margin:0 auto">Please feel free to reach out to me @ my contacts for collaborating / or even just a chat or anything else.</p>
 </section>
 
 <!-- CV -->
@@ -223,31 +207,26 @@ footer .gold{color:var(--gold)}
   <div class="cv-card">
     <div class="cv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6M9 9h2"/></svg></div>
     <div class="cv-meta">
-      <h3>Parijat Mandal — CV.pdf</h3>
-      <p>Latest version · maintained on Google Drive</p>
+      <h3>Parijat Mandal CV.pdf</h3>
+      <p>CV Last updated: June 2026. Licensed under CC BY-SA 4.0</p>
     </div>
     <div class="cv-actions">
-      <a class="btn primary" href="https://drive.google.com/file/d/1JN0shu_xJ8UEoHzlPqRuAzy7_F4nyI0Q/view?usp=sharing" target="_blank" rel="noopener">
+      <a class="btn primary" href="https://drive.google.com/file/d/1owodXTr8c3RGChRFks1gA7fI5aAFDC7C/view?usp=sharing" target="_blank" rel="noopener">
         Open in Drive
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
       </a>
-      <a class="btn ghost" href="https://drive.google.com/uc?export=download&id=1JN0shu_xJ8UEoHzlPqRuAzy7_F4nyI0Q">Download</a>
     </div>
   </div>
 
-  <div class="cv-frame">
-    <iframe src="https://drive.google.com/file/d/1JN0shu_xJ8UEoHzlPqRuAzy7_F4nyI0Q/preview" allow="autoplay" title="Parijat Mandal CV preview"></iframe>
-  </div>
 </section>
 
 <!-- CTA -->
 <div class="cta-band">
-  <h2>Have a role in <em>mind?</em></h2>
-  <p>Whether it's a fully-scoped internship or just an interesting problem to talk about — I'd love to hear from you.</p>
+  <p>Open to collaborations.</p>
   <div class="cta-row">
     <a class="btn primary" href="mailto:parijatmandal3631@gmail.com">Email me</a>
     <a class="btn ghost" href="https://www.linkedin.com/in/parijat-mandal/" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="btn ghost" href="/portfolio.html">Back to portfolio</a>
+    <a class="btn ghost" href="https://pmandalegend1.github.io/">Back to portfolio</a>
   </div>
 </div>
 
@@ -258,5 +237,15 @@ footer .gold{color:var(--gold)}
   <div>Crafted under a <span class="gold">starry night</span></div>
 </footer>
 
+<script>
+const navBtn = document.getElementById("nav-menu-btn");
+const navPanel = document.getElementById("nav-menu-panel");
+function closeNavMenu(){navBtn.classList.remove("is-open");navPanel.classList.remove("is-open");navBtn.setAttribute("aria-expanded","false");document.body.classList.remove("nav-menu-open");}
+function openNavMenu(){navBtn.classList.add("is-open");navPanel.classList.add("is-open");navBtn.setAttribute("aria-expanded","true");document.body.classList.add("nav-menu-open");}
+navBtn.addEventListener("click",(e)=>{e.stopPropagation();navPanel.classList.contains("is-open")?closeNavMenu():openNavMenu();});
+navPanel.querySelectorAll("a").forEach(link=>link.addEventListener("click",closeNavMenu));
+document.addEventListener("click",(e)=>{if(!navPanel.contains(e.target)&&!navBtn.contains(e.target))closeNavMenu();});
+document.addEventListener("keydown",(e)=>{if(e.key==="Escape")closeNavMenu();});
+</script>
 </body>
 </html>
