@@ -6,14 +6,14 @@
 <title>Parijat Mandal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink:#0d0f1a; --deep:#1a1f3a; --cobalt:#1e3a6e; --swirl:#2d5fa6;
   --gold:#d4a843; --gold-warm:#e8bc52; --gold-bright:#f0c84a; --gold-dim:rgba(212,168,67,0.65);
   --cream:#f2ece0; --cream-dim:rgba(242,236,224,0.88); --warm:#ede6d5; --muted:#7e8aa0;
   --rule:rgba(212,168,67,0.13);
-  --font-display:'Cormorant Garamond','EB Garamond',Georgia,serif;
+  --font-display:'Fraunces',Georgia,serif;
   --font-body:'Inter',system-ui,sans-serif;
   --font-mono:'JetBrains Mono',monospace;
 }
@@ -246,7 +246,7 @@ main{
 .hero-text h1{
   font-family:var(--font-display);
   font-size:clamp(3.8rem, 8.5vw, 7rem);
-  font-weight:300;
+  font-weight:400;
   line-height:.95;
   letter-spacing:-.03em;
   color:var(--cream);
@@ -1571,6 +1571,68 @@ main{
     .swirl-star--inline{ display:none; }
     .hero-photo{ justify-self:start; margin-top:.5rem; }
 }
+
+/* ── EXP SCROLL FOCUS ── */
+#experience{position:relative;}
+
+/* Override the hover translateY while scroll effect is active */
+#experience.scroll-active .exp-item:hover{transform:none;}
+
+.exp-item{
+  transform-origin:center center;
+  will-change:transform,box-shadow,opacity;
+}
+
+/* Smooth-scroll transition on the items */
+.exp-item.exp-scroll-driven{
+  transition:
+    transform .55s cubic-bezier(.22,1,.36,1),
+    box-shadow .55s ease,
+    opacity .55s ease,
+    border-color .45s ease,
+    background .45s ease;
+}
+
+/* The dim overlay */
+#exp-dim-overlay{
+  position:fixed;inset:0;
+  background:rgba(4,6,14,.72);
+  pointer-events:none;
+  z-index:8;
+  opacity:0;
+  transition:opacity .45s ease;
+  backdrop-filter:blur(1px);
+  -webkit-backdrop-filter:blur(1px);
+}
+
+/* Focused card sits on top of dim */
+.exp-item.exp-focused{
+  position:relative;
+  z-index:10;
+  border-color:rgba(212,168,67,.55)!important;
+  background:linear-gradient(145deg,rgba(28,38,80,.72) 0%,rgba(14,18,42,.60) 100%)!important;
+}
+
+/* Logos scale up when focused */
+.exp-item.exp-focused .exp-logo{
+  transform:scale(1.22)!important;
+  border-color:rgba(232,184,75,.75)!important;
+  box-shadow:0 0 14px rgba(232,184,75,.18);
+}
+
+/* Unfocused cards dim out */
+.exp-item.exp-unfocused{
+  opacity:.38;
+  filter:saturate(.6);
+}
+
+@media(prefers-reduced-motion:reduce){
+  .exp-item.exp-scroll-driven{transition:opacity .3s ease!important;}
+  .exp-item.exp-focused{transform:none!important;}
+  .exp-item.exp-unfocused{transform:none!important;opacity:.5;}
+  #exp-dim-overlay{display:none;}
+}
+
 </style>
 </head>
 <body>
@@ -2314,6 +2376,98 @@ document.addEventListener("keydown",(e)=>{
         closeNavMenu();
     }
 });
+</script>
+
+
+<script>
+(function(){
+  const section  = document.getElementById('experience');
+  if(!section) return;
+  const items    = Array.from(section.querySelectorAll('.exp-item'));
+  if(!items.length) return;
+
+  /* Create dim overlay */
+  const overlay  = document.createElement('div');
+  overlay.id     = 'exp-dim-overlay';
+  document.body.appendChild(overlay);
+
+  /* Mark items for scroll-driven CSS transitions */
+  items.forEach(it => it.classList.add('exp-scroll-driven'));
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ── core calc ── */
+  function getFocusState(item){
+    const r   = item.getBoundingClientRect();
+    const vh  = window.innerHeight;
+    const mid = r.top + r.height / 2;            // item center in viewport
+    const vc  = vh * 0.48;                        // target focal point (slightly above mid)
+    const d   = mid - vc;                         // signed distance from focal point
+    const norm= d / (vh * 0.55);                  // -1 .. +1
+    const focus = Math.max(0, 1 - Math.abs(norm) * 1.6);
+    return { focus, norm };
+  }
+
+  function tick(){
+    const sr   = section.getBoundingClientRect();
+    const vh   = window.innerHeight;
+    const inSection = sr.top < vh * 0.85 && sr.bottom > vh * 0.15;
+
+    if(inSection){
+      overlay.style.opacity = '1';
+      section.classList.add('scroll-active');
+
+      let bestFocus = 0, bestIdx = 0;
+      const states = items.map((item, i) => {
+        const s = getFocusState(item);
+        if(s.focus > bestFocus){ bestFocus = s.focus; bestIdx = i; }
+        return s;
+      });
+
+      items.forEach((item, i) => {
+        const { focus, norm } = states[i];
+        const isFocused = (i === bestIdx);
+
+        item.classList.toggle('exp-focused',   isFocused);
+        item.classList.toggle('exp-unfocused', !isFocused);
+
+        if(!reducedMotion){
+          if(isFocused){
+            /* 3-D perspective: tilt as it scrolls in, straightens at centre */
+            const tiltX   = norm * 9;           /* deg — positive = near-side tip up */
+            const scaleV  = 1 + focus * 0.038;  /* max ~1.038 scale */
+            const shadowY = Math.round(focus * 48);
+            const shadowB = Math.round(focus * 80);
+            const shadowG = Math.round(focus * 36);
+
+            item.style.transform =
+              `perspective(1100px) rotateX(${-tiltX}deg) scale(${scaleV})`;
+            item.style.boxShadow =
+              `0 ${shadowY}px ${shadowB}px rgba(0,0,0,.55),`+
+              `0 0 ${shadowG}px rgba(212,168,67,.14),`+
+              `inset 0 1px 0 rgba(255,255,255,.05)`;
+          } else {
+            /* gentle recede */
+            item.style.transform = 'perspective(1100px) scale(0.965)';
+            item.style.boxShadow = '';
+          }
+        }
+      });
+    } else {
+      overlay.style.opacity = '0';
+      section.classList.remove('scroll-active');
+      items.forEach(item => {
+        item.classList.remove('exp-focused','exp-unfocused');
+        item.style.transform = '';
+        item.style.boxShadow = '';
+      });
+    }
+  }
+
+  window.addEventListener('scroll', tick, { passive:true });
+  window.addEventListener('resize', tick, { passive:true });
+  tick();
+})();
 </script>
 
 </body>
