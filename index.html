@@ -1412,15 +1412,15 @@ main{
 /* CONTACT */
 .contact-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:1.4rem}
 .contact-info{padding:1.6rem}
-.contact-info a.contact-link{display:flex;align-items:center;gap:.7rem;color:var(--gold);font-family:var(--font-display);
+.contact-info .contact-link{display:flex;align-items:center;gap:.7rem;color:var(--gold);font-family:var(--font-display);
   font-size:1.04rem;text-decoration:none;margin-bottom:.65rem;transition:padding-left .2s}
-.contact-info a.contact-link:hover{text-decoration:underline;padding-left:4px}
-.contact-info a.contact-link svg{width:16px;height:16px;flex-shrink:0;opacity:.85}
+.contact-info .contact-link:hover{text-decoration:underline;padding-left:4px}
+.contact-info .contact-link svg{width:16px;height:16px;flex-shrink:0;opacity:.85}
 .contact-detail{font-size:.87rem;color:var(--muted);line-height:1.85;margin-top:.8rem;
   padding-top:.85rem;border-top:1px solid var(--rule)}
 .contact-open{padding:1.6rem;display:flex;flex-direction:column;gap:.7rem;
   background:linear-gradient(155deg,rgba(45,95,166,.2),rgba(26,31,58,.55))}
-.contact-open h3{font-family:var(--font-display);font-size:1.3rem;color:var(--cream)}
+.contact-open h2,.contact-open h3{font-family:var(--font-display);font-size:1.3rem;color:var(--cream)}
 .contact-open p{font-size:.9rem;color:rgba(245,240,232,.78);line-height:1.7}
 .availability{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);
   font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#3ecf8e;
@@ -1473,6 +1473,61 @@ main{
     color:rgba(232,184,75,.22);
     font-weight:300;
 }
+
+/* GMAIL POPUP */
+.gmail-popup-overlay{
+  display:none;position:fixed;inset:0;z-index:9000;
+  background:rgba(4,6,14,.72);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;
+}
+.gmail-popup-overlay.is-open{display:flex;}
+.gmail-popup{
+  background:linear-gradient(145deg,rgba(22,28,60,.97) 0%,rgba(10,14,30,.97) 100%);
+  border:1px solid rgba(212,168,67,.35);
+  border-radius:10px;
+  padding:2rem 2.4rem 1.8rem;
+  max-width:420px;width:90%;
+  box-shadow:0 32px 80px rgba(0,0,0,.65),0 0 40px rgba(212,168,67,.07);
+  position:relative;
+  text-align:center;
+}
+.gmail-popup-close{
+  position:absolute;top:.8rem;right:.9rem;
+  background:none;border:none;cursor:pointer;
+  color:var(--muted);font-size:1.3rem;line-height:1;
+  transition:color .2s;
+}
+.gmail-popup-close:hover{color:var(--gold);}
+.gmail-popup-icon{
+  width:48px;height:48px;margin:0 auto .9rem;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(212,168,67,.08);border:1px solid rgba(212,168,67,.25);
+  border-radius:50%;
+}
+.gmail-popup-icon svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.6;}
+.gmail-popup h3{
+  font-family:var(--font-display);font-size:1.1rem;
+  color:var(--cream);margin-bottom:.4rem;
+}
+.gmail-popup p{font-size:.84rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.6;}
+.gmail-address{
+  display:inline-block;
+  font-family:var(--font-mono);font-size:.88rem;
+  color:var(--gold);letter-spacing:.04em;
+  background:rgba(212,168,67,.07);
+  border:1px dashed rgba(212,168,67,.3);
+  border-radius:4px;padding:.55rem 1.1rem;
+  user-select:none;-webkit-user-select:none;
+}
+.gmail-popup-btn{
+  display:inline-flex;align-items:center;gap:.5rem;margin-top:1.1rem;
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink);background:var(--gold);
+  padding:.55rem 1.3rem;border-radius:3px;text-decoration:none;
+  font-weight:600;transition:background .2s,transform .2s;
+}
+.gmail-popup-btn:hover{background:var(--gold-bright);transform:translateY(-1px);}
+.gmail-popup-note{font-size:.72rem;color:rgba(126,138,160,.6);margin-top:.8rem;}
 
 /* QUOTE band */
 
@@ -1584,6 +1639,24 @@ main{
 .exp-item{
   transform-origin:center center;
   will-change:transform,box-shadow,opacity;
+}
+
+/* ── SLIDE-IN FROM SIDES ── */
+.exp-item.exp-slide-hidden{
+  opacity:0;
+}
+.exp-item.exp-slide-hidden.from-left{
+  transform:translateX(-60px);
+}
+.exp-item.exp-slide-hidden.from-right{
+  transform:translateX(60px);
+}
+.exp-item.exp-slide-in{
+  opacity:1;
+  transform:translateX(0) !important;
+  transition:
+    opacity .65s cubic-bezier(.22,1,.36,1),
+    transform .65s cubic-bezier(.22,1,.36,1);
 }
 
 /* Smooth-scroll transition on the items */
@@ -1747,11 +1820,9 @@ main{
 
               <span class="hero-divider">|</span>
 
-              <a href="mailto:parijatmandal3631@gmail.com"
-                class="contact-icon"
-                aria-label="Email">
+              <button onclick="openGmailPopup()" class="contact-icon" aria-label="Email" style="cursor:pointer;">
                   <img src="images/gmail-mail.png" alt="Email">
-              </a>
+              </button>
 
               <span class="hero-divider">|</span>
 
@@ -1799,7 +1870,7 @@ main{
         <img src="images/vrajbhoomi-logo.png" alt="VISMA, Anand" class="edu-logo">
         <div>
           <div class="edu-inst"><a href="https://vrajbhoomi.org/mobilevrajbhoomiorg/index.php" target="_blank" rel="noopener">Vrajbhoomi International School</a></div>
-          <div class="edu-degree">PCM with CS \ CBSE Board</div>
+          <div class="edu-degree">PCM with CS · CBSE Board</div>
         </div>
       </div>
       <div class="edu-divider"></div>
@@ -2162,8 +2233,6 @@ main{
   </div>
 </section>
 
-</section>
-
 <!-- Declined Offers -->
 <section class="section" id="declined-offers">
   <div class="section-label">10 — Offers I Declined</div>
@@ -2282,10 +2351,10 @@ main{
   <p class="s-sub">Best reached over email or LinkedIn.</p>
   <div class="contact-grid">
     <div class="contact-info panel">
-      <a class="contact-link" href="mailto:parijatmandal3631@gmail.com">
+      <button onclick="openGmailPopup()" class="contact-link" style="background:none;border:none;cursor:pointer;text-align:left;padding:0;width:100%;font-family:inherit;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
         <span style="text-decoration: underline;">Email</span> - parijatmandal3631@gmail.com
-      </a>
+      </button>
       <a class="contact-link" href="https://www.linkedin.com/in/parijat-mandal/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.06c.53-1 1.83-2.05 3.77-2.05 4.04 0 4.79 2.65 4.79 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21h-4z"/></svg>
         <span style="text-decoration: underline;">LinkedIn</span> - /in/parijat-mandal
@@ -2295,7 +2364,7 @@ main{
         <span style="text-decoration: underline;">GitHub</span> - @pmandalegend1
       </a>
       <div class="contact-detail">
-        Fluent in: English, Hindi, Bengali &amp Gujarati
+        Fluent in: English, Hindi, Bengali &amp; Gujarati
       </div>
     </div>
     <div class="contact-open panel">
@@ -2303,7 +2372,7 @@ main{
       <h2>Open to opportunities</h2>
       <div class="contact-cta-row">
         <a class="contact-cta primary" href="/open.html">Resume →</a>
-        <a class="contact-cta ghost" href="mailto:parijatmandal3631@gmail.com">Email me</a>
+        <button onclick="openGmailPopup()" class="contact-cta ghost" style="cursor:pointer;border:none;font-family:inherit;">Email me</button>
       </div>
     </div>
   </div>
@@ -2316,6 +2385,24 @@ main{
 </section>
 
 </main>
+
+<!-- GMAIL POPUP -->
+<div class="gmail-popup-overlay" id="gmail-popup-overlay" onclick="if(event.target===this)closeGmailPopup()">
+  <div class="gmail-popup" role="dialog" aria-modal="true" aria-label="Email address">
+    <button class="gmail-popup-close" onclick="closeGmailPopup()" aria-label="Close">&#x2715;</button>
+    <div class="gmail-popup-icon">
+      <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+    </div>
+    <h3>Get in Touch</h3>
+    <p>Reach out over email. I try my best to respond ASAP.</p>
+    <div class="gmail-address" aria-label="Email address">parijatmandal3631&#64;gmail.com</div>
+    <br>
+    <a class="gmail-popup-btn" href="https://mail.google.com/mail/?view=cm&to=parijatmandal3631@gmail.com" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      Open in Gmail
+    </a>
+  </div>
+</div>
 
 <footer class="site-footer">
   <div class="footer-inner">
@@ -2397,24 +2484,59 @@ document.addEventListener("keydown",(e)=>{
   /* Mark items for scroll-driven CSS transitions */
   items.forEach(it => it.classList.add('exp-scroll-driven'));
 
+  /* ── SLIDE-IN FROM ALTERNATING SIDES ── */
   const reducedMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const slideRevealed = new Set();
 
-  /* ── core calc ── */
+  if(!reducedMotion){
+    items.forEach((item, i) => {
+      item.classList.add('exp-slide-hidden');
+      item.classList.add(i % 2 === 0 ? 'from-left' : 'from-right');
+    });
+  }
+
+  function revealSlides(){
+    items.forEach(item => {
+      if(slideRevealed.has(item)) return;
+      const r  = item.getBoundingClientRect();
+      const vh = window.innerHeight;
+      /* Trigger when the card's top edge enters the bottom 80% of viewport */
+      if(r.top < vh * 0.88){
+        slideRevealed.add(item);
+        /* Small stagger so cards don't all pop at once */
+        const delay = Array.from(slideRevealed).indexOf(item) === 0 ? 0 : 0;
+        requestAnimationFrame(() => {
+          item.classList.add('exp-slide-in');
+        });
+      }
+    });
+  }
+
+  /* ── core focus calc ── */
   function getFocusState(item){
     const r   = item.getBoundingClientRect();
     const vh  = window.innerHeight;
-    const mid = r.top + r.height / 2;            // item center in viewport
-    const vc  = vh * 0.48;                        // target focal point (slightly above mid)
-    const d   = mid - vc;                         // signed distance from focal point
-    const norm= d / (vh * 0.55);                  // -1 .. +1
+    const mid = r.top + r.height / 2;
+    const vc  = vh * 0.48;
+    const d   = mid - vc;
+    const norm= d / (vh * 0.55);
     const focus = Math.max(0, 1 - Math.abs(norm) * 1.6);
     return { focus, norm };
   }
 
   function tick(){
-    const sr   = section.getBoundingClientRect();
+    revealSlides();
+
     const vh   = window.innerHeight;
-    const inSection = sr.top < vh * 0.85 && sr.bottom > vh * 0.15;
+
+    /* Only activate the dim/focus effect once at least the FIRST item
+       is meaningfully inside the viewport — not just the section heading */
+    const firstItem = items[0];
+    const firstR    = firstItem.getBoundingClientRect();
+    const lastItem  = items[items.length - 1];
+    const lastR     = lastItem.getBoundingClientRect();
+
+    const inSection = firstR.top < vh * 0.80 && lastR.bottom > vh * 0.20;
 
     if(inSection){
       overlay.style.opacity = '1';
@@ -2436,9 +2558,8 @@ document.addEventListener("keydown",(e)=>{
 
         if(!reducedMotion){
           if(isFocused){
-            /* 3-D perspective: tilt as it scrolls in, straightens at centre */
-            const tiltX   = norm * 9;           /* deg — positive = near-side tip up */
-            const scaleV  = 1 + focus * 0.038;  /* max ~1.038 scale */
+            const tiltX   = norm * 9;
+            const scaleV  = 1 + focus * 0.038;
             const shadowY = Math.round(focus * 48);
             const shadowB = Math.round(focus * 80);
             const shadowG = Math.round(focus * 36);
@@ -2450,7 +2571,6 @@ document.addEventListener("keydown",(e)=>{
               `0 0 ${shadowG}px rgba(212,168,67,.14),`+
               `inset 0 1px 0 rgba(255,255,255,.05)`;
           } else {
-            /* gentle recede */
             item.style.transform = 'perspective(1100px) scale(0.965)';
             item.style.boxShadow = '';
           }
@@ -2471,6 +2591,21 @@ document.addEventListener("keydown",(e)=>{
   window.addEventListener('resize', tick, { passive:true });
   tick();
 })();
+</script>
+
+<script>
+/* Gmail popup */
+function openGmailPopup(){
+  document.getElementById('gmail-popup-overlay').classList.add('is-open');
+  document.body.style.overflow='hidden';
+}
+function closeGmailPopup(){
+  document.getElementById('gmail-popup-overlay').classList.remove('is-open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeGmailPopup();
+});
 </script>
 
 </body>
